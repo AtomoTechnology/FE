@@ -27,15 +27,16 @@
       <div class="text-red-400">
         <span
           *ngIf="
-            accountForm?.controls?.email?.invalid &&
+            accountForm?.controls?.email?.errors?.required &&
             accountForm?.controls?.email?.touched
           "
         >
           El email es obligatorio y/o es invalido
         </span>
-        <!-- <span *ngIf="accountForm.get('email')?.errors?.pattern">
+        <span *ngIf="accountForm?.controls?.email?.errors?.pattern &&
+                    accountForm?.controls?.email?.touched">
           Ingrese un email valido example@gmail.com
-        </span> -->
+        </span>
       </div>
     </fieldset>
     <!-- <span>Email incorrecto</span> -->
