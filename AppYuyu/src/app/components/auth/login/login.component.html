@@ -24,20 +24,26 @@
         placeholder="Ingrese su email"
         name="email"
       />
-      <div class="text-red-400">
-        <span
-          *ngIf="
-            accountForm?.controls?.email?.errors?.required &&
-            accountForm?.controls?.email?.touched
-          "
-        >
-          El email es obligatorio y/o es invalido
-        </span>
-        <span *ngIf="accountForm?.controls?.email?.errors?.pattern &&
-                    accountForm?.controls?.email?.touched">
-          Ingrese un email valido example@gmail.com
-        </span>
-      </div>
+      <!-- <div class="text-red-400"> -->
+      <span
+        class="alert-error"
+        *ngIf="
+          accountForm?.controls?.email?.errors?.required &&
+          accountForm?.controls?.email?.touched
+        "
+      >
+        El email es obligatorio
+      </span>
+      <span
+        class="alert-error"
+        *ngIf="
+          accountForm?.controls?.email?.errors?.pattern &&
+          accountForm?.controls?.email?.touched
+        "
+      >
+        Ingrese un email valido example@gmail.com
+      </span>
+      <!-- </div> -->
     </fieldset>
     <!-- <span>Email incorrecto</span> -->
     <fieldset>
@@ -48,18 +54,36 @@
         placeholder="Ingrese su Contraseña"
         name="password"
       />
-    </fieldset>
-    <!-- <div class="text-red-400">
-      <span *ngIf="accountForm.get('password')?.errors?.required">
+
+      <span
+        class="alert-error"
+        *ngIf="
+          accountForm?.controls?.password?.errors?.required &&
+          accountForm?.controls?.password?.touched
+        "
+      >
         La contraseña es obligatoria
       </span>
-      <span *ngIf="accountForm.get('email')?.errors?.minlength">
+      <span
+        class="alert-error"
+        *ngIf="
+          accountForm?.controls?.password?.errors?.minlength &&
+          accountForm?.controls?.password?.touched
+        "
+      >
         La contraseña debe tener minimo 5 caracteres
       </span>
-      <span *ngIf="accountForm.get('email')?.errors?.maxlength">
-        La contraseña debe tener minimo 5 caracteres
+      <span
+        class="alert-error"
+        *ngIf="
+          accountForm?.controls?.password?.errors?.maxlength &&
+          accountForm?.controls?.password?.touched
+        "
+        password
+      >
+        La contraseña debe tener maximo 25 caracteres
       </span>
-    </div> -->
+    </fieldset>
     <fieldset>
       <button
         type="submit"

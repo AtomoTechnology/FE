@@ -17,10 +17,14 @@
       type="text"
       class="w-full shadow-2xl rounded-none bg-white"
       placeholder="buscar un menu"
+      value="{{ dataUser.role }}"
     />
   </div>
 
-  <div class="login-register flex justify-between items-center gap-2">
+  <div
+    *ngIf="!dataUser.userId; else userLogged"
+    class="login-register flex justify-between items-center gap-2"
+  >
     <button
       class="btn text-white btn-login hover:text-blue-500"
       routerLink="/auth/login"
@@ -34,4 +38,19 @@
       Registrarse
     </button>
   </div>
+
+  <ng-template
+    #userLogged
+    class="login-register flex justify-between items-center gap-2"
+  >
+    <button
+      class="btn text-white btn-login hover:text-blue-500"
+      (click)="Logout()"
+    >
+      Logout
+    </button>
+    <div class="current-user-box">
+      {{ dataUser.role }}
+    </div>
+  </ng-template>
 </div>

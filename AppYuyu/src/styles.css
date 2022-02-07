@@ -72,7 +72,5 @@ label {
   display: inline-block;
 }
 .alert-error {
-  padding: 7px 10px;
-  background-color: rgb(231, 188, 188);
-  color: red;
+  color: #d16666;
 }

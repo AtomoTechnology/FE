@@ -10,6 +10,6 @@ export class CryptoService {
     return crypto.AES.encrypt(text.toString(), secret).toString();
   }
   Decrypt(text: string) {
-    return crypto.AES.decrypt(text, secret).toString(crypto.enc.Utf16);
+    return crypto.AES.decrypt(text, secret).toString(crypto.enc.Utf8);
   }
 }

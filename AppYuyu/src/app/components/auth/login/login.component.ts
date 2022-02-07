@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,31 +18,27 @@ export class LoginComponent implements OnInit {
       [Validators.required, Validators.minLength(5), Validators.maxLength(25)],
     ],
   });
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
-  ValidateFormLogin(field: string): string {
-    let validateField = this.accountForm.get(field);
-
-    let result =
-      !validateField?.valid && validateField?.touched
-        ? 'is-invalid'
-        : validateField?.touched
-        ? 'is-valid'
-        : '';
-    // debugger;
-    console.log(result);
-    return result;
-    // return (
-    //   this.accountForm.controls[field].errors &&
-    //   this.accountForm.controls[field].touched
-    // );
-  }
   Login() {
-    console.log(this.accountForm?.controls);
-  }
-  log(x: any) {
-    console.log(x);
+    if (this.accountForm.valid) {
+      this.authService.Login(this.accountForm.value).subscribe((data) => {
+        console.log(data);
+        if (data) {
+          this.router.navigate(['/home']);
+          setTimeout(() => {
+            location.reload();
+          }, 0);
+        }
+      });
+    } else {
+      this.accountForm.markAllAsTouched();
+    }
   }
 }

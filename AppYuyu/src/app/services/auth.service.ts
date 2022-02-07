@@ -31,16 +31,19 @@ export class AuthService {
 
   Storagedata(data: any) {
     let user: any = jwt(data.token);
-    console.log(user.id);
     localStorage.setItem(StatusLS.userID, this.encode.Encrypt(user.id));
     localStorage.setItem(StatusLS.roleID, this.encode.Encrypt(user.idRole));
     localStorage.setItem(StatusLS.role, this.encode.Encrypt(user.role));
   }
 
   GetDataFromStorage() {
-    const userId = localStorage.getItem(StatusLS.userID);
-    const roleId = localStorage.getItem(StatusLS.roleID);
-    const role = localStorage.getItem(StatusLS.role);
+    let userId = this.encode.Decrypt(
+      localStorage.getItem(StatusLS.userID) || ''
+    );
+    const roleId = this.encode.Decrypt(
+      localStorage.getItem(StatusLS.roleID) || ''
+    );
+    const role = this.encode.Decrypt(localStorage.getItem(StatusLS.role) || '');
     return {
       userId,
       role,
@@ -53,5 +56,7 @@ export class AuthService {
     localStorage.removeItem(StatusLS.roleID);
     localStorage.removeItem(StatusLS.role);
   }
-  Logout() {}
+  Logout() {
+    this.ClearStorage();
+  }
 }
