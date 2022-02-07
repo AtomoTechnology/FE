@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SecurityGuardGuard } from 'src/app/services/security/security-guard.guard';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -9,7 +10,8 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'register',
+    path: 'register',    
+    canActivate: [SecurityGuardGuard],
     component: RegisterComponent,
   },
   {
