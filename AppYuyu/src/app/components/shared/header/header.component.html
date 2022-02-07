@@ -1,0 +1,37 @@
+<div class="header bg-gray-900 p-3 flex justify-between items-center">
+  <div class="flex gap-3 justify-between items-center">
+    <div
+      routerLink="/home"
+      class="logo flex rounded-full overflow-hidden shadow p-1 w-16 h-16"
+    >
+      <img
+        src="https://st2.depositphotos.com/4398873/9234/v/600/depositphotos_92345936-stock-illustration-fork-and-knife-with-heart.jpg"
+        alt=""
+        class="rounded-full"
+      />
+    </div>
+  </div>
+  <div class="search w-6/12 flex bg-white justify-between items-center">
+    <i class="fas fa-search p-3 text-gray-700 h-full border-right-2"></i>
+    <input
+      type="text"
+      class="w-full shadow-2xl rounded-none bg-white"
+      placeholder="buscar un menu"
+    />
+  </div>
+
+  <div class="login-register flex justify-between items-center gap-2">
+    <button
+      class="btn text-white btn-login hover:text-blue-500"
+      routerLink="/auth/login"
+    >
+      Login
+    </button>
+    <button
+      routerLink="/auth/register"
+      class="btn btn-register text-white bg-blue-500 hover:bg-blue-400"
+    >
+      Registrarse
+    </button>
+  </div>
+</div>

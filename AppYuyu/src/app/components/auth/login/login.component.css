@@ -1,0 +1,10 @@
+.form {
+  width: 450px;
+}
+.is-invalid {
+  display: block;
+}
+
+.is-valid {
+  display: none;
+}

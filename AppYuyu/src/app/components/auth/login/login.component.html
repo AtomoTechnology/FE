@@ -1,0 +1,71 @@
+<div class="login justify-center items-center my-4 h-full flex">
+  <form
+    autocomplete="off"
+    action="#"
+    class="form-login bg-white p-8 mx-3 h-auto shadow-xl rounded-sm form flex flex-col justify-start items-center"
+    [formGroup]="accountForm"
+    (ngSubmit)="Login()"
+  >
+    <h3 class="self-start title-form login-header-title">Inicia Sesion</h3>
+    <!-- <input
+      type="text"
+      name="name"
+      required
+      ngModel
+      #name="ngModel"
+      (change)="log(name)"
+    /> -->
+
+    <fieldset>
+      <label for="email">Email</label>
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="Ingrese su email"
+        name="email"
+      />
+      <div class="text-red-400">
+        <span
+          *ngIf="
+            accountForm?.controls?.email?.invalid &&
+            accountForm?.controls?.email?.touched
+          "
+        >
+          El email es obligatorio y/o es invalido
+        </span>
+        <!-- <span *ngIf="accountForm.get('email')?.errors?.pattern">
+          Ingrese un email valido example@gmail.com
+        </span> -->
+      </div>
+    </fieldset>
+    <!-- <span>Email incorrecto</span> -->
+    <fieldset>
+      <label for="password">Contraseña</label>
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="Ingrese su Contraseña"
+        name="password"
+      />
+    </fieldset>
+    <!-- <div class="text-red-400">
+      <span *ngIf="accountForm.get('password')?.errors?.required">
+        La contraseña es obligatoria
+      </span>
+      <span *ngIf="accountForm.get('email')?.errors?.minlength">
+        La contraseña debe tener minimo 5 caracteres
+      </span>
+      <span *ngIf="accountForm.get('email')?.errors?.maxlength">
+        La contraseña debe tener minimo 5 caracteres
+      </span>
+    </div> -->
+    <fieldset>
+      <button
+        type="submit"
+        class="btn rounded-full text-white text-lg uppercase shadow-2xl hover:bg-blue-600 jhm-shadow self-start btn-login bg-blue-500"
+      >
+        Inicia Sesion
+      </button>
+    </fieldset>
+  </form>
+</div>
