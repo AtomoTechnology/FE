@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { PrimeNGConfig } from 'primeng/api';
 import { filter, map } from 'rxjs/operators';
 
 @Component({
@@ -11,13 +12,14 @@ import { filter, map } from 'rxjs/operators';
 export class AppComponent  implements OnInit {
 
   constructor(private titleService: Title, private router: Router,
-    private activatedRoute: ActivatedRoute){}
+    private activatedRoute: ActivatedRoute, private primengConfig: PrimeNGConfig){}
 
       setDocTitle(title: string) {
         this.titleService.setTitle(title);
       }
 
     ngOnInit() {
+      this.primengConfig.ripple = true;
       const appTitle = this.titleService.getTitle();
       this.router
         .events.pipe(
