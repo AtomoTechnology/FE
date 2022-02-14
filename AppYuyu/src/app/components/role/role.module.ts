@@ -4,14 +4,9 @@ import { CommonModule } from '@angular/common';
 import { RoleRoutingModule } from './role-routing.module';
 import { RoleComponent } from './role/role.component';
 
-
 @NgModule({
-  declarations: [
-    RoleComponent
-  ],
-  imports: [
-    CommonModule,
-    RoleRoutingModule
-  ]
+  declarations: [RoleComponent],
+  imports: [CommonModule, RoleRoutingModule],
+  exports: [RoleComponent, RoleRoutingModule],
 })
-export class RoleModule { }
+export class RoleModule {}

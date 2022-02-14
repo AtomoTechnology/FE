@@ -12,9 +12,24 @@
         />
       </div>
       <ul class="flex justify-center items-center gap-3">
-        <li class="hover:text-blue-500"><a href="">Inicio</a></li>
-        <li class="hover:text-blue-500"><a href="">Quienes Somos</a></li>
-        <li class="hover:text-blue-500"><a href="">Menus</a></li>
+        <li
+          routerLinkActive="border-b-2 border-white text-blue-500 current"
+          class="hover:text-blue-500"
+        >
+          <a routerLink="/home">Inicio</a>
+        </li>
+        <li
+          routerLinkActive="border-b-2 border-white text-blue-500 current"
+          class="hover:text-blue-500"
+        >
+          <a routerLink="/auth/register">Quienes Somos</a>
+        </li>
+        <li
+          routerLinkActive="border-b-2 border-white text-blue-500 current"
+          class="hover:text-blue-500"
+        >
+          <a routerLink="/auth/login">Menus</a>
+        </li>
         <li class="hover:text-blue-500"><a href="">Terminos & Condicion</a></li>
       </ul>
     </div>

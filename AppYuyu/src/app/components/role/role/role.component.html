@@ -1,1 +1,12 @@
-<p>role works!</p>
+<ul class="roles">
+  <li *ngFor="let rol of roles" class="role">
+    <span>
+      {{ rol.name }}
+    </span>
+  </li>
+</ul>
+<button (click)="GetOne(2)">getOne</button>
+
+<div class="">
+  {{ role.name }}
+</div>

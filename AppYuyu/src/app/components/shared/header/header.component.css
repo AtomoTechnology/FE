@@ -1,0 +1,52 @@
+.content-header-right {
+  position: relative;
+}
+.content-header-right:hover .menu-user {
+  /* visibility: visible; */
+  /* display: flex; */
+  /* opacity: 1;*/
+  display: block;
+}
+
+.content-header-right .user-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 13px;
+  cursor: pointer;
+}
+.user-logo img {
+  width: 50px;
+  padding: 10px;
+}
+.menu-user {
+  position: absolute;
+}
+.menu-user ul li:hover .icon i {
+  font-size: 20px;
+}
+.menu-user ul li:hover {
+  background: rgb(246, 246, 246);
+  border-left: 2px solid rgb(255, 86, 86);
+  color: rgb(2, 113, 187);
+}
+.menu-user ul li a .title {
+  text-align: left;
+}
+
+.menu-user.active-mobile {
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu-user::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  transform: rotate(45deg);
+  z-index: -1;
+}

@@ -1,1 +1,37 @@
-<main class="main my-4">content</main>
+<main class="main my-4">
+  <div class="menus">
+    <div
+      class="menus-container grid gap-4 justify-center items-center justify-items-center p-2 m-auto"
+    >
+      <div
+        *ngFor="let menu of menus"
+        class="menu bg-white hover:shadow-md shadow-sm cursor-pointer"
+      >
+        <div routerLink="/menu/{{ menu.name }}" class="menu-header relative">
+          <img src="{{ menu.image }}" alt="{{ menu.name }}" />
+          <div
+            class="icons-actions-menu hidden shadow-2xl rounded-sm flex-col justify-center items-center absolute top-0 left-0 bg-white m-1"
+          >
+            <i
+              class="fas fa-cart-plus w-full flex flex-col justify-center items-center p-2 hover:bg-gray-900 hover:text-white"
+            ></i>
+            <i
+              class="fas fa-eye w-full p-2 flex flex-col justify-center items-center hover:bg-gray-900 hover:text-white"
+            ></i>
+            <i
+              class="fas fa-bookmark w-full flex flex-col justify-center items-center p-2 hover:bg-gray-900 hover:text-white"
+            ></i>
+          </div>
+        </div>
+        <div class="details p-3">
+          <h3 class="text-lg text-gray-800">
+            {{ menu.name }}
+          </h3>
+          <span class="description opacity-70 text-md">{{
+            menu.description
+          }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,4 +1,4 @@
-<div class="header bg-gray-900 p-3 flex justify-between items-center">
+<div class="header bg-gray-900 flex justify-between items-center">
   <div class="flex gap-3 justify-between items-center">
     <div
       routerLink="/home"
@@ -17,40 +17,89 @@
       type="text"
       class="w-full shadow-2xl rounded-none bg-white"
       placeholder="buscar un menu"
-      value="{{ dataUser.role }}"
     />
   </div>
-
-  <div
-    *ngIf="!dataUser.userId; else userLogged"
-    class="login-register flex justify-between items-center gap-2"
-  >
-    <button
-      class="btn text-white btn-login hover:text-blue-500"
-      routerLink="/auth/login"
+  <div class="px-4 flex justify-center items-center">
+    <div
+      *ngIf="!dataUser.userId; else userLogged"
+      class="login-register flex justify-between items-center gap-2"
     >
-      Login
-    </button>
-    <button
-      routerLink="/auth/register"
-      class="btn btn-register text-white bg-blue-500 hover:bg-blue-400"
-    >
-      Registrarse
-    </button>
-  </div>
-
-  <ng-template
-    #userLogged
-    class="login-register flex justify-between items-center gap-2"
-  >
-    <button
-      class="btn text-white btn-login hover:text-blue-500"
-      (click)="Logout()"
-    >
-      Logout
-    </button>
-    <div class="current-user-box">
-      {{ dataUser.role }}
+      <button
+        class="btn text-white btn-login hover:text-blue-500"
+        routerLink="/auth/login"
+      >
+        Login
+      </button>
+      <button
+        routerLink="/auth/register"
+        class="btn btn-register text-white bg-blue-500 hover:bg-blue-400"
+      >
+        Registrarse
+      </button>
     </div>
-  </ng-template>
+
+    <ng-template
+      #userLogged
+      class="login-register flex justify-between items-center gap-2"
+    >
+      <div class="cart relative cursor-pointer">
+        <span
+          class="absolute top-0 right-0 flex jusyify-center items-center w-4 h-4 rounded-full bg-blue-200 p-1 text-gray-600"
+        >
+          8
+        </span>
+        <i
+          class="fas fa-cart-plus w-full flex flex-col justify-center items-center p-2 text-white hover:text-white"
+        ></i>
+      </div>
+      <div class="content-header-right">
+        <div class="user-logo">
+          <img
+            src="https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
+            alt="logo admin"
+            class="rounded-full overflow-hidden"
+          />
+          <span class="user-name text-white">{{ dataUser.role }}</span>
+        </div>
+        <div
+          class="menu-user w-52 h-auto bg-white -right-2 top-12 z-50 shadow-xl rounded-sm hidden"
+        >
+          <ul class="w-full">
+            <li class="flex items-center justify-center p-2">
+              <a href="/works" class="flex items-center w-full">
+                <span
+                  class="icon flex justify-center items-center min-w-1/12 text-left"
+                >
+                  <i class="fas fa-th-list"></i>
+                </span>
+                <span class="ml-4 title">Trabajos</span>
+              </a>
+            </li>
+            <li class="flex items-center justify-center p-2">
+              <a href="/admin/roles" class="flex items-center w-full">
+                <span
+                  class="icon flex justify-center items-center min-w-1/12 text-left"
+                >
+                  <i class="fas fa-th-list"></i>
+                </span>
+                <span class="ml-4 title">Role</span>
+              </a>
+            </li>
+
+            <li
+              class="flex items-center justify-center border-2 border-gray-100 p-2"
+              (click)="Logout()"
+            >
+              <a href="" class="flex items-center w-full">
+                <span class="icon">
+                  <i class="fas fa-th-list"></i>
+                </span>
+                <span class="title ml-4">Cerrar Sesion</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-template>
+  </div>
 </div>

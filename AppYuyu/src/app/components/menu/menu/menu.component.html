@@ -1,1 +1,7 @@
-<p>menu works!</p>
+<div class="menus">
+  <div class="menus-container">
+    <div *ngFor="let menu of menus" class="menu">
+      {{ menu.name }}
+    </div>
+  </div>
+</div>

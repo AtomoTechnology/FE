@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MenuDetailComponent } from './components/menu/menu-detail/menu-detail.component';
+import { RoleComponent } from './components/role/role/role.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,14 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () =>
       import('./components/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'menu/:name',
+    component: MenuDetailComponent,
+  },
+  {
+    path: 'admin/roles',
+    component: RoleComponent,
   },
 
   {

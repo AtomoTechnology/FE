@@ -13,14 +13,33 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
   private baseUrl = environment.AppUrl;
-  private statetoke:any;
-  constructor(private http: HttpClient, private encode: CryptoService,
-    public jwtHelper: JwtHelperService) {}
+  private statetoke: any;
+  constructor(
+    private http: HttpClient,
+    private encode: CryptoService,
+    public jwtHelper: JwtHelperService
+  ) {}
   Login(auth: any): Observable<Boolean> {
     return this.http.post<any>(`${this.baseUrl}users/signin`, auth).pipe(
       tap((data) => {
         if (data.status) {
           this.Storagedata(data);
+        } else {
+          throw data;
+        }
+      }),
+      mapTo(true),
+      catchError((err) => {
+        throw err;
+      })
+    );
+  }
+
+  Register(data: any): Observable<Boolean> {
+    return this.http.post<any>(`${this.baseUrl}users/signup`, data).pipe(
+      tap((data) => {
+        if (data.status) {
+          console.log(data);
         } else {
           throw data;
         }
@@ -57,18 +76,12 @@ export class AuthService {
   }
 
   getJwtToken() {
-    return this.encode.Decrypt(localStorage.getItem(StatusLS.JWT_TOKEN)  || '');
+    return this.encode.Decrypt(localStorage.getItem(StatusLS.JWT_TOKEN) || '');
   }
 
   public isAuthenticated(): boolean {
     let exp = this.jwtHelper.isTokenExpired(this.getJwtToken());
-    if(this.getJwtToken()!= null && exp){
-      this.statetoke = this.jwtHelper.isTokenExpired(this.getJwtToken());
-    }
-    else{
-      this.statetoke = exp;
-    }
-    return !this.statetoke;
+    return !(this.getJwtToken() != null && exp);
   }
 
   ClearStorage() {

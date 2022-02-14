@@ -2,35 +2,127 @@
   <form
     autocomplete="off"
     action="#"
+    [formGroup]="registerForm"
+    (ngSubmit)="Register()"
     class="form-register bg-white p-8 mx-3 h-auto shadow-xl rounded-sm form flex flex-col justify-start items-center"
   >
     <h3 class="self-start title-form register-header-title">Registrese</h3>
     <fieldset>
       <label for="firsname">Nombre</label>
-      <input type="text" name="firstname" placeholder="Ingrese su nombre" />
+      <input
+        type="text"
+        formControlName="firstname"
+        id="firstname"
+        name="firstname"
+        placeholder="Ingrese su nombre"
+      />
+      <span
+        *ngIf="
+          registerForm.controls.firstname.errors &&
+          registerForm.controls.firstname.touched
+        "
+        class="alert-error"
+      >
+        El nombre es obligatorio
+      </span>
     </fieldset>
     <fieldset>
       <label for="lastname">Apellido</label>
-      <input type="text" name="lastname" placeholder="Ingrese su apellido" />
+      <input
+        type="text"
+        formControlName="lastname"
+        id="lastname"
+        name="lastname"
+        placeholder="Ingrese su apellido"
+      />
+      <span
+        *ngIf="
+          registerForm.controls.lastname.errors &&
+          registerForm.controls.lastname.touched
+        "
+        class="alert-error"
+      >
+        El apellido es obligatorio
+      </span>
     </fieldset>
     <fieldset>
       <label for="email">Email</label>
-      <input type="email" placeholder="Ingrese su email" />
+      <input
+        type="email"
+        formControlName="email"
+        id="email"
+        placeholder="Ingrese su email"
+      />
+      <span
+        *ngIf="
+          registerForm.controls.email.errors &&
+          registerForm.controls.email.touched
+        "
+        class="alert-error"
+      >
+        El email es obligatorio y debe ser valido
+      </span>
     </fieldset>
     <fieldset>
       <label for="password">Contraseña</label>
-      <input type="password" placeholder="Ingrese su Contraseña" />
+      <input
+        type="password"
+        formControlName="password"
+        id="password"
+        placeholder="Ingrese su Contraseña"
+      />
+      <span
+        *ngIf="
+          registerForm.controls.password.errors &&
+          registerForm.controls.password.touched
+        "
+        class="alert-error"
+      >
+        La contraseña es obligatoria y debe tener entre 5 y 25 caracteres
+      </span>
     </fieldset>
     <fieldset>
       <label for="adress">Direccion</label>
-      <input type="text" name="adress" placeholder="Ingrese su direccion" />
+      <input
+        formControlName="adress"
+        id="adress"
+        type="text"
+        name="adress"
+        placeholder="Ingrese su direccion"
+      />
+      <span
+        *ngIf="
+          registerForm.controls.adress.errors &&
+          registerForm.controls.adress.touched
+        "
+        class="alert-error"
+      >
+        La direccion es obligatoria
+      </span>
     </fieldset>
     <fieldset>
       <label for="phone">Telefono</label>
-      <input type="text" name="phone" placeholder="Ingrese su telefono" />
+      <input
+        type="text"
+        formControlName="phone"
+        id="phone"
+        name="phone"
+        placeholder="Ingrese su telefono"
+      />
+      <span
+        *ngIf="
+          registerForm.controls.phone.errors &&
+          registerForm.controls.phone.touched
+        "
+        class="alert-error"
+      >
+        El numero de celular es obligatorio
+      </span>
     </fieldset>
     <fieldset>
       <button
+        type="submit"
+        [disabled]="!registerForm.valid"
         class="btn rounded-full text-white text-lg uppercase shadow-2xl hover:bg-blue-600 jhm-shadow self-start btn-login bg-blue-500"
       >
         Registrarse
