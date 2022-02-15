@@ -11,16 +11,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
-<<<<<<< HEAD
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SharedModule],
-  providers: [
-    Title,
-    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService,
-=======
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, SharedModule, BrowserAnimationsModule],
   providers: [Title, {provide:JWT_OPTIONS, useValue:JWT_OPTIONS},JwtHelperService,
->>>>>>> 6e1032213ed0650c4ae6c1430e5f48dbf6754b24
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

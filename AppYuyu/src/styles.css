@@ -74,3 +74,11 @@ label {
 .alert-error {
   color: #d16666;
 }
+
+footer {
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: white;
+}
