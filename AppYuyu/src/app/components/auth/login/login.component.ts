@@ -12,9 +12,12 @@ export class LoginComponent implements OnInit {
   private isEmail =
     /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   accountForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.pattern(this.isEmail)]],
+    email: [
+      'admin@gmail.com',
+      [Validators.required, Validators.pattern(this.isEmail)],
+    ],
     password: [
-      '',
+      'pass1234',
       [Validators.required, Validators.minLength(5), Validators.maxLength(25)],
     ],
   });

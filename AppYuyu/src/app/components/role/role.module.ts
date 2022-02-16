@@ -5,10 +5,16 @@ import { RoleRoutingModule } from './role-routing.module';
 import { RoleComponent } from './role/role.component';
 import { PrimeNgModule } from 'src/app/specialmodule/primeng.module';
 import { ActionroleComponent } from './actionrole/actionrole.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [RoleComponent, ActionroleComponent],
-  imports: [CommonModule, RoleRoutingModule,PrimeNgModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RoleRoutingModule,
+    PrimeNgModule,
+  ],
   exports: [RoleComponent, RoleRoutingModule],
 })
 export class RoleModule {}

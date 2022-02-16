@@ -1,1 +1,58 @@
-<p>actionrole works!</p>
+<div class="login justify-center items-center my-4 h-full flex">
+  <form
+    autocomplete="off"
+    action="#"
+    class="form-login bg-white p-8 mx-3 h-auto shadow-xl rounded-sm form flex flex-col justify-start items-center"
+    [formGroup]="roleForm"
+    (ngSubmit)="Create()"
+  >
+    <h3 class="self-start title-form login-header-title">
+      {{ option }}
+    </h3>
+
+    <fieldset>
+      <label for="name">Nombre</label>
+      <input
+        type="text"
+        formControlName="name"
+        placeholder="Ingrese un nombre de role"
+        name="name"
+      />
+      <!-- <div class="text-red-400"> -->
+      <span
+        class="alert-error"
+        *ngIf="
+          roleForm?.controls?.name?.errors?.required &&
+          roleForm?.controls?.name?.touched
+        "
+      >
+        El name es obligatorio
+      </span>
+
+      <!-- </div> -->
+    </fieldset>
+    <!-- <span>Email incorrecto</span> -->
+    <fieldset>
+      <label for="description">Descripcion</label>
+      <textarea
+        formControlName="description"
+        placeholder="Ingrese una description"
+        name="description"
+        rows="5"
+        cols="30"
+      >
+      </textarea>
+    </fieldset>
+    <div class="w-full flex justify-between my-2">
+      <button type="submit" class="btn text-lg uppercase self-start btn-d">
+        {{ btnOption ? "Actualizar" : "Crear" }}
+      </button>
+      <buttton
+        routerLink="/roles"
+        class="btn text-lg uppercase self-start btn-cancel"
+      >
+        Volver
+      </buttton>
+    </div>
+  </form>
+</div>

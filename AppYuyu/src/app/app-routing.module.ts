@@ -24,8 +24,9 @@ const routes: Routes = [
     component: MenuDetailComponent,
   },
   {
-    path: 'Role',
-    loadChildren: () => import('./components/role/role.module').then( m => m.RoleModule),
+    path: 'roles',
+    loadChildren: () =>
+      import('./components/role/role.module').then((m) => m.RoleModule),
   },
 
   {

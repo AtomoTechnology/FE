@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  AppUrl  : 'http://localhost:5000/api/v1/'
-  
+  AppUrl: 'http://localhost:5000/api/v1/',
+  authorization: 'authorization',
 };
 
 /*
