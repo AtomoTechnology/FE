@@ -28,6 +28,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./components/role/role.module').then((m) => m.RoleModule),
   },
+  {
+    path: 'statuses',
+    loadChildren: () =>
+      import('./components/status/status.module').then((m) => m.StatusModule),
+  },
 
   {
     path: '',

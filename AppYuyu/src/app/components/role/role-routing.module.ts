@@ -11,27 +11,28 @@ const routes: Routes = [
     component: RoleComponent,
     data: {
       expectedRole: 'admin',
-      title: 'Lista de los roles'
-    }
+      title: 'Lista de los roles',
+    },
   },
   {
-    path: 'ActionRole',   
+    path: 'ActionRole',
     canLoad: [SecurityGuardGuard],
     canActivate: [RoleGuardGuard],
     component: ActionroleComponent,
     data: {
       expectedRole: 'admin',
-      title: 'Crear  rol'
-    }
+      title: 'Crear  rol',
+    },
   },
   {
     path: 'ActionRole/:id',
-    canActivate: [SecurityGuardGuard],
+    canLoad: [SecurityGuardGuard],
+    canActivate: [RoleGuardGuard],
     component: ActionroleComponent,
     data: {
       expectedRole: 'admin',
-      title: 'Actualizar rol'
-    }
+      title: 'Actualizar rol',
+    },
   },
   {
     path: '',
@@ -42,6 +43,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class RoleRoutingModule { }
+export class RoleRoutingModule {}
