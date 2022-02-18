@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MenuDetailComponent } from './components/menu/menu-detail/menu-detail.component';
 import { RoleComponent } from './components/role/role/role.component';
+import { RoleGuardGuard } from './services/security/role-guard.guard';
+import { SecurityGuardGuard } from './services/security/security-guard.guard';
 
 const routes: Routes = [
   {

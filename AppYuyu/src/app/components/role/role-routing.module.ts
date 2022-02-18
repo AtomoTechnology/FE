@@ -8,9 +8,11 @@ import { RoleComponent } from './role/role.component';
 const routes: Routes = [
   {
     path: '',
+    canLoad: [SecurityGuardGuard],
+    canActivate: [RoleGuardGuard],
     component: RoleComponent,
     data: {
-      expectedRole: 'admin',
+      expectedRole: ['admin'],
       title: 'Lista de los roles',
     },
   },
@@ -20,7 +22,7 @@ const routes: Routes = [
     canActivate: [RoleGuardGuard],
     component: ActionroleComponent,
     data: {
-      expectedRole: 'admin',
+      expectedRole: ['admin'],
       title: 'Crear  rol',
     },
   },
@@ -30,7 +32,7 @@ const routes: Routes = [
     canActivate: [RoleGuardGuard],
     component: ActionroleComponent,
     data: {
-      expectedRole: 'admin',
+      expectedRole: ['admin'],
       title: 'Actualizar rol',
     },
   },
