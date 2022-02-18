@@ -10,8 +10,7 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'register',
-    canActivate: [SecurityGuardGuard],
+    path: 'register',    
     component: RegisterComponent,
   },
   {
