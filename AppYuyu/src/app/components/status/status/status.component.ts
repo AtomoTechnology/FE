@@ -14,6 +14,7 @@ export class StatusComponent implements OnInit {
   constructor(private statusService: StatusService) {}
 
   ngOnInit(): void {
+    debugger;
     this.GetAll();
   }
   GetAll() {

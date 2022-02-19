@@ -65,17 +65,28 @@
           class="menu-user w-52 h-auto bg-white -right-2 top-12 z-50 shadow-xl rounded-sm hidden"
         >
           <ul class="w-full">
-            <li class="flex items-center justify-center p-2">
-              <a href="/works" class="flex items-center w-full">
+            <li class="flex items-center justify-center p-2" *ngFor="let menu of menus">
+              <a href="{{menu.url}}" class="flex items-center w-full">
                 <span
                   class="icon flex justify-center items-center min-w-1/12 text-left"
                 >
-                  <i class="fas fa-th-list"></i>
+                  <i class="{{menu.icon}}"></i>
                 </span>
-                <span class="ml-4 title">Trabajos</span>
+                <span class="ml-4 title">{{menu.displayName}}</span>
               </a>
             </li>
-            <li class="flex items-center justify-center p-2">
+            <li
+            class="flex items-center justify-center border-2 border-gray-100 p-2"
+            (click)="Logout()"
+          >
+            <a href="" class="flex items-center w-full">
+              <span class="icon">
+                <i class="fas fa-th-list"></i>
+              </span>
+              <span class="title ml-4">Cerrar Sesion</span>
+            </a>
+          </li>
+            <!-- <li class="flex items-center justify-center p-2">
               <a href="/roles" class="flex items-center w-full">
                 <span
                   class="icon flex justify-center items-center min-w-1/12 text-left"
@@ -106,7 +117,7 @@
                 </span>
                 <span class="title ml-4">Cerrar Sesion</span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>

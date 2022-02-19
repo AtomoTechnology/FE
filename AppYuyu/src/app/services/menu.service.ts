@@ -1,0 +1,104 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MenuService {
+
+  menunav:any;
+  constructor() { }
+
+  GetMenu(role: string){
+    return  this.GetTypeUser(role);
+  }
+  
+  private GetTypeUser(role: string){
+
+    if (role.toLowerCase() === ('admin').toLowerCase()) {
+      return this.GetAdmin();
+    } else if (role.toLowerCase() === ('usuario').toLowerCase()) {
+      return this.GetUser();
+    } else if (role.toLowerCase() === ('empleado').toLowerCase()) {
+      return this.GetEmpolyee();
+    } else {
+      return  'error';
+    }
+  }
+  private  GetAdmin(){
+    this.menunav=[
+      {
+        url:"/works",
+        displayName:"Trabajos",
+        active:"active Trabajos",
+        icon: "fas fa-th-list"
+      },
+      {
+        url:"/roles",
+        displayName:"Role",
+        active:"Role",
+        icon: "fas fa-th-list",
+        span:"ml-4 title"
+      },
+      {
+        url:"/statuses",
+        displayName:"Estados",
+        active:"Estados",
+        icon: "fas fa-th-list",
+        span:"ml-4 title"
+      }
+    ]
+    return this.menunav;
+  }
+
+  private GetUser(){
+    this.menunav=[
+      {
+        url:"/works",
+        displayName:"Trabajos",
+        active:"active Trabajos",
+        icon: "fas fa-th-list"
+      },
+      {
+        url:"/roles",
+        displayName:"Role",
+        active:"Role",
+        icon: "fas fa-th-list",
+        span:"ml-4 title"
+      },
+      {
+        url:"/statuses",
+        displayName:"Estados",
+        active:"Estados",
+        icon: "fas fa-th-list",
+        span:"ml-4 title"
+      }
+    ]
+    return this.menunav;
+  }
+
+  private GetEmpolyee(){
+    this.menunav=[
+      {
+        url:"/works",
+        displayName:"Trabajos",
+        active:"active Trabajos",
+        icon: "fas fa-th-list"
+      },
+      {
+        url:"/roles",
+        displayName:"Role",
+        active:"Role",
+        icon: "fas fa-th-list",
+        span:"ml-4 title"
+      },
+      {
+        url:"/statuses",
+        displayName:"Estados",
+        active:"Estados",
+        icon: "fas fa-th-list",
+        span:"ml-4 title"
+      }
+    ]
+    return this.menunav;
+  }
+}

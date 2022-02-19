@@ -3,6 +3,8 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
 import { filter, map } from 'rxjs/operators';
+import { MenuService } from './services/menu.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +13,11 @@ import { filter, map } from 'rxjs/operators';
 })
 export class AppComponent  implements OnInit {
 
+ 
   constructor(private titleService: Title, private router: Router,
-    private activatedRoute: ActivatedRoute, private primengConfig: PrimeNGConfig){}
+    private activatedRoute: ActivatedRoute, private primengConfig: PrimeNGConfig){
+
+    }
 
       setDocTitle(title: string) {
         this.titleService.setTitle(title);
