@@ -1,3 +1,4 @@
+import { PriceModule } from './components/price/price.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MenuDetailComponent } from './components/menu/menu-detail/menu-detail.component';
@@ -34,6 +35,11 @@ const routes: Routes = [
     path: 'statuses',
     loadChildren: () =>
       import('./components/status/status.module').then((m) => m.StatusModule),
+  },
+  {
+    path: 'prices',
+    loadChildren: () =>
+      import('./components/price/price.module').then((m) => m.PriceModule),
   },
 
   {

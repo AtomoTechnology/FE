@@ -5,9 +5,10 @@ import { StatusRoutingModule } from './status-routing.module';
 import { StatusComponent } from './status/status.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PrimeNgModule } from 'src/app/specialmodule/primeng.module';
+import { ActionstatusComponent } from './actionstatus/actionstatus.component';
 
 @NgModule({
-  declarations: [StatusComponent],
+  declarations: [StatusComponent, ActionstatusComponent],
   imports: [
     CommonModule,
     StatusRoutingModule,

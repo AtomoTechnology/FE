@@ -1,7 +1,21 @@
 <div class="container">
-  <p-table [value]="statuses" sortField="name" sortMode="single">
+  <p-table [value]="statuses" [rowHover]="true" sortField="name">
+    <ng-template pTemplate="caption">
+      <div class="table-header">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="flex justify-between items-center">
+              <h1 class="display-4 py-2 text-truncate text-center">
+                Lista de los Estados
+              </h1>
+              <a href="/statuses/action" class="btn btn-d">Nuevo Estado</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
     <ng-template pTemplate="header">
-      <tr>
+      <tr class="">
         <th>ID</th>
         <th>NAME</th>
         <th>Fecha</th>
@@ -17,7 +31,7 @@
         <span style="font-weight: bold">{{ status.name }}</span>
       </td>
     </tr> -->
-      <tr>
+      <tr class="">
         <td>{{ status.id }}</td>
         <td>{{ status.name }}</td>
         <td>{{ status.createdAt | date: "fullDate" }}</td>
@@ -29,7 +43,7 @@
             pTooltip="Actualizar estado"
             tooltipPosition="bottom"
             class="p-button-rounded p-button-success p-mr-2"
-            [routerLink]="['/roles/ActionRole/' + status.id]"
+            [routerLink]="['/statuses/action/' + status.id]"
           ></button>
           <button
             pButton
