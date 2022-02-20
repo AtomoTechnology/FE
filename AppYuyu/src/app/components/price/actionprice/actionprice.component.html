@@ -1,1 +1,68 @@
-<p>actionprice works!</p>
+<div class="login justify-center items-center my-4 h-full flex">
+    <form
+      autocomplete="off"
+      action="#"
+      class="form-login bg-white p-8 mx-3 h-auto shadow-xl rounded-sm form flex flex-col justify-start items-center"
+      [formGroup]="actionForm"
+      (ngSubmit)="Create()"
+    >
+      <h3 class="self-start title-form login-header-title">
+        {{ option }}
+      </h3>
+  
+      <fieldset>
+        <label for="price">Precio</label>
+        <input
+          type="number"
+          formControlName="price"
+          placeholder="Ingrese el precio"
+          name="price" min="0"
+        />
+        <!-- <div class="text-red-400"> -->
+        <span
+          class="alert-error"
+          *ngIf="
+          actionForm?.controls?.price?.errors?.required &&
+          actionForm?.controls?.price?.touched
+          "
+        >
+          El precio es obligatorio
+        </span>
+        <span
+        class="alert-error"
+        *ngIf="
+        actionForm?.controls?.price?.errors?.min &&
+        actionForm?.controls?.price?.touched
+        "
+      >
+        El precio no puede ser negativo
+      </span>
+  
+        <!-- </div> -->
+      </fieldset>
+      <!-- <span>Email incorrecto</span> -->
+      <fieldset>
+        <label for="description">Descripcion</label>
+        <textarea
+          formControlName="description"
+          placeholder="Ingrese una description"
+          name="description"
+          rows="5"
+          cols="30"
+        >
+        </textarea>
+      </fieldset>
+      <div class="w-full flex justify-between my-2">
+        <button type="submit" class="btn text-lg uppercase self-start btn-d">
+          {{ btnOption ? "Actualizar" : "Crear" }}
+        </button>
+        <buttton
+          routerLink="/prices"
+          class="btn text-lg uppercase self-start btn-cancel"
+        >
+          Volver
+        </buttton>
+      </div>
+    </form>
+  </div>
+  

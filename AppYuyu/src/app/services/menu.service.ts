@@ -33,6 +33,12 @@ export class MenuService {
         icon: "fas fa-th-list"
       },
       {
+        url:"/auth/users",
+        displayName:"Usuarios",
+        active:"active Usuarios",
+        icon: "fas fa-user"
+      },
+      {
         url:"/roles",
         displayName:"Role",
         active:"Role",
@@ -43,6 +49,13 @@ export class MenuService {
         url:"/statuses",
         displayName:"Estados",
         active:"Estados",
+        icon: "fas fa-th-list",
+        span:"ml-4 title"
+      },
+      {
+        url:"/prices",
+        displayName:"Precio",
+        active:"Precios",
         icon: "fas fa-th-list",
         span:"ml-4 title"
       }

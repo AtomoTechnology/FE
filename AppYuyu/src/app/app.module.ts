@@ -8,10 +8,17 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './components/shared/shared.module';
 import { TokenInterceptorService } from './services/security/token-interceptor.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SharedModule, BrowserAnimationsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SharedModule, BrowserAnimationsModule,ToastrModule.forRoot({
+    progressBar: true,
+    timeOut: 5000,
+    enableHtml: true,
+    preventDuplicates: true,
+    progressAnimation:'increasing'
+  })],
   providers: [Title, {provide:JWT_OPTIONS, useValue:JWT_OPTIONS},JwtHelperService,
     {
       provide: HTTP_INTERCEPTORS,

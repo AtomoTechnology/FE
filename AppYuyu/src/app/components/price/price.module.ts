@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { PriceRoutingModule } from './price-routing.module';
 import { PriceComponent } from './price/price.component';
 import { ActionpriceComponent } from './actionprice/actionprice.component';
+import { PrimeNgModule } from 'src/app/specialmodule/primeng.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,6 +15,8 @@ import { ActionpriceComponent } from './actionprice/actionprice.component';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    PrimeNgModule,
     PriceRoutingModule
   ]
 })

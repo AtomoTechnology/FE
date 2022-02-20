@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Prices } from 'src/app/Interface/price';
-import { GenericService } from '../../../services/generic.service';
 import { ApiController } from 'src/app/controller/ApiController';
+import { Users } from 'src/app/Interface/user';
+import { GenericService } from 'src/app/services/generic.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-price',
-  templateUrl: './price.component.html',
-  styleUrls: ['./price.component.css']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-export class PriceComponent implements OnInit {
-   List!: Prices;
+export class UserComponent implements OnInit {
+
+  List!: Users;
    loading: boolean = true;
    private ctrl = new ApiController();
 
@@ -21,7 +22,7 @@ export class PriceComponent implements OnInit {
   }
 
   GetAll() {
-    this.genericService.GetAll("", this.ctrl.price).subscribe((data: any) => {
+    this.genericService.GetAll("", this.ctrl.user).subscribe((data: any) => {
       this.loading = false;
       this.List = data;
     });
@@ -37,7 +38,7 @@ export class PriceComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         debugger;
-        this.genericService.Delete(id, this.ctrl.price).subscribe((data: any) => {
+        this.genericService.Delete(id, this.ctrl.user).subscribe((data: any) => {
           debugger;
           if (data.status === true) {
             debugger;
@@ -55,5 +56,4 @@ export class PriceComponent implements OnInit {
       }
     });
   }
-
 }

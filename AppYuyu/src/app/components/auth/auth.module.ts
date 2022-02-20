@@ -5,10 +5,12 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserComponent } from './user/user.component';
+import { PrimeNgModule } from 'src/app/specialmodule/primeng.module';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
-  imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule],
+  declarations: [LoginComponent, RegisterComponent, UserComponent],
+  imports: [CommonModule, AuthRoutingModule,PrimeNgModule, ReactiveFormsModule],
   exports: [LoginComponent, AuthRoutingModule],
 })
 export class AuthModule {}
