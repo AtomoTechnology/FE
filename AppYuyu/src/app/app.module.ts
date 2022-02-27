@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
@@ -9,6 +9,11 @@ import { SharedModule } from './components/shared/shared.module';
 import { TokenInterceptorService } from './services/security/token-interceptor.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+
+// Cambiar el local de la app
+import localEs from '@angular/common/locales/es-AR';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localEs);
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +30,9 @@ import { ToastrModule } from 'ngx-toastr';
       useClass: TokenInterceptorService,
       multi: true,
     },
+    {
+      provide: LOCALE_ID, useValue:'es-AR'
+    }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
 
   option: string = 'Registrese';
   btnOption: Boolean = false;
+  rolelist: any = []
   private ctrl = new ApiController();
   
   private reg: RegExp =
@@ -25,6 +26,7 @@ export class RegisterComponent implements OnInit {
     id: 0,
     firstname: ['', [Validators.required]],
     lastname: ['', [Validators.required]],
+    roleId:[''],
     email: ['', [Validators.required, , Validators.pattern(this.reg)]],
     password: ['',
       [Validators.required, Validators.minLength(5), Validators.maxLength(25)],
@@ -50,7 +52,9 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.GetAllAll();
+  }
 
   GetOne(id: number) {
     this.genericService.GetById(id, this.ctrl.user).subscribe((data: any) => {
@@ -58,9 +62,21 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  GetAllAll() {
+    this.genericService.GetAll("", this.ctrl.role).subscribe((data: any) => {
+      this.rolelist = data.roles;
+    });
+  }
+
   Create(){
     debugger;
     if (this.registerForm.valid) {
+
+      if(this.registerForm.value.roleId === "" && this.IsAuth){
+        this.messageService.Error('Erorr', "Se debe seleccinar un rol");
+        return;
+      }
+
       if (this.btnOption) {
         // this.Update();
       } else {
@@ -89,7 +105,12 @@ export class RegisterComponent implements OnInit {
         },
         (err: HttpErrorResponse) => {
           console.log(err);
+          if( err.error.message === "Validation error"){
+            this.messageService.Error('Error',err.error.err.errors[0].message);
+          }
+          else{
           this.messageService.Error('Error',err.error.message);
+          }
         }
       );
     }

@@ -71,11 +71,17 @@ export class AuthService {
     const fullName = this.encode.Decrypt(
       localStorage.getItem(StatusLS.fullName) || ''
     );
+    
+    var detail = [];
+    if(localStorage.getItem("Detail")){
+      detail = JSON.parse(localStorage.getItem("Detail") || '');
+    }
     return {
       userId,
       role,
       roleId,
       fullName,
+      detail
     };
   }
 

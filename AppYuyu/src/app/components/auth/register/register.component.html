@@ -63,6 +63,20 @@
         El email es obligatorio y debe ser valido
       </span>
     </fieldset>
+
+    <fieldset *ngIf="!btnOption">
+      <label for="btnOption">Acceso</label>
+        <select  formControlName="roleId"  class="form-control" id="roleId">
+          <option value="">Seleccionar el role</option>
+          <option value="{{role.id}}" *ngFor ="let role of rolelist"  name="roleId">{{role.name}}</option>
+        </select>
+        <!-- <div class="invalid-feedback">
+          <span *ngIf="browserForm.get('roleId').errors?.required">
+              Debe seleccionar un role
+          </span>
+        </div> -->
+    </fieldset>
+    
     <fieldset *ngIf="!btnOption">
       <label for="password">Contraseña</label>
       <input

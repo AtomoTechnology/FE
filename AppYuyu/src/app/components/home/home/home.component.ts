@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -75,4 +76,36 @@ export class HomeComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  addDetail(item: any){
+    let isExist = localStorage.getItem('Detail');
+    console.log(isExist);
+    let local:any[]  = [];
+    debugger;
+    if(isExist === null){
+      let json = {
+        menuId: 1,
+        quantity: 1
+      }
+      local.push(json);
+      localStorage.setItem('Detail', JSON.stringify(local));
+    }
+    else{
+      local = JSON.parse(localStorage.getItem('Detail') || '');
+     let inde = 0;
+     let isok = false;
+     let result =  local.filter((valor:any, index:any) => {
+      if(valor.menuId == 3){
+        inde = index;
+        isok = true;
+      }
+
+      if(isok){
+        local[inde].quantity++;
+        localStorage.setItem('Detail', JSON.stringify(local));
+      }
+     });
+      console.log(result);
+    }
+  }
 }
