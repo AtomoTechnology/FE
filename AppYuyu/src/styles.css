@@ -105,5 +105,5 @@ label {
   width: 90%;
   margin: auto;
   margin: 1rem auto;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.096);
+  /* box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.096); */
 }

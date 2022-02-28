@@ -25,9 +25,9 @@ export class MenuService {
   private GetAdmin() {
     this.menunav = [
       {
-        url: '/works',
-        displayName: 'Trabajos',
-        active: 'active Trabajos',
+        url: '/orders',
+        displayName: 'Pedidos',
+        active: 'active orders',
         icon: 'fas fa-th-list',
       },
       {

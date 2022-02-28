@@ -42,11 +42,11 @@
       #userLogged
       class="login-register flex justify-between items-center gap-2"
     >
-      <div class="cart relative cursor-pointer">
+      <div routerLink="cart" class="cart relative cursor-pointer">
         <span
           class="absolute top-0 right-0 flex jusyify-center items-center w-4 h-4 rounded-full bg-blue-200 p-1 text-gray-600"
         >
-          {{DetailMenu.length}}
+          {{ DetailMenu.length }}
         </span>
         <i
           class="fas fa-cart-plus w-full flex flex-col justify-center items-center p-2 text-white hover:text-white"
@@ -65,27 +65,30 @@
           class="menu-user w-52 h-auto bg-white -right-2 top-12 z-50 shadow-xl rounded-sm hidden"
         >
           <ul class="w-full">
-            <li class="flex items-center justify-center p-2" *ngFor="let menu of menus">
-              <a href="{{menu.url}}" class="flex items-center w-full">
+            <li
+              class="flex items-center justify-center p-2"
+              *ngFor="let menu of menus"
+            >
+              <a href="{{ menu.url }}" class="flex items-center w-full">
                 <span
                   class="icon flex justify-center items-center min-w-1/12 text-left"
                 >
-                  <i class="{{menu.icon}}"></i>
+                  <i class="{{ menu.icon }}"></i>
                 </span>
-                <span class="ml-4 title">{{menu.displayName}}</span>
+                <span class="ml-4 title">{{ menu.displayName }}</span>
               </a>
             </li>
             <li
-            class="flex items-center justify-center border-2 border-gray-100 p-2"
-            (click)="Logout()"
-          >
-            <a href="" class="flex items-center w-full">
-              <span class="icon">
-                <i class="fas fa-th-list"></i>
-              </span>
-              <span class="title ml-4">Cerrar Sesion</span>
-            </a>
-          </li>
+              class="flex items-center justify-center border-2 border-gray-100 p-2"
+              (click)="Logout()"
+            >
+              <a href="" class="flex items-center w-full">
+                <span class="icon">
+                  <i class="fas fa-th-list"></i>
+                </span>
+                <span class="title ml-4">Cerrar Sesion</span>
+              </a>
+            </li>
             <!-- <li class="flex items-center justify-center p-2">
               <a href="/roles" class="flex items-center w-full">
                 <span
