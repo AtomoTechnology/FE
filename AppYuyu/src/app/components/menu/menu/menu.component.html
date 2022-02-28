@@ -1,7 +1,35 @@
+<button routerLink="/menus/action" class="btn">Crear Menu</button>
 <div class="menus">
-  <div class="menus-container">
-    <div *ngFor="let menu of menus" class="menu">
-      {{ menu.name }}
+  <div
+    class="menus-container grid gap-4 justify-center items-center justify-items-center p-2 m-auto"
+  >
+    <div
+      *ngFor="let menu of menus"
+      class="menu bg-white hover:shadow-md shadow-sm cursor-pointer"
+    >
+      <div class="menu-header relative">
+        <img src="{{ menu.image }}" alt="{{ menu.name }}" />
+        <div
+          class="icons-actions-menu hidden shadow-2xl rounded-sm flex-col gap-1 justify-center items-center absolute top-0 left-0 bg-white m-1"
+        >
+          <i
+            (click)="Delete(menu.id)"
+            class="fas fa-trash w-full flex flex-col justify-center items-center rounded-full p-2 bg-red-400 hover:bg-red-900 hover:text-white"
+          ></i>
+          <i
+            [routerLink]="['/menus/action/' + menu.id]"
+            class="fas fa-edit w-full p-2 flex rounded-full flex-col justify-center items-center bg-yellow-600 hover:bg-yellow-700 hover:text-white"
+          ></i>
+        </div>
+      </div>
+      <div class="details p-3">
+        <h3 class="text-lg text-gray-800">
+          {{ menu.name }}
+        </h3>
+        <span class="description opacity-70 text-md">
+          {{ menu.description }}
+        </span>
+      </div>
     </div>
   </div>
 </div>

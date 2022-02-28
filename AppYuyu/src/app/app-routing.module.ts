@@ -24,6 +24,11 @@ const routes: Routes = [
     component: MenuDetailComponent,
   },
   {
+    path: 'menus',
+    loadChildren: () =>
+      import('./components/menu/menu.module').then((m) => m.MenuModule),
+  },
+  {
     path: 'roles',
     loadChildren: () =>
       import('./components/role/role.module').then((m) => m.RoleModule),

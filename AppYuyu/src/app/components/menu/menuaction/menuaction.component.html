@@ -1,9 +1,9 @@
-<div class="login justify-center items-center my-4 h-full flex">
+<div class="menu-add justify-center items-center my-4 h-full flex">
   <form
     autocomplete="off"
     action="#"
     class="form-login bg-white p-8 mx-3 h-auto shadow-xl rounded-sm form flex flex-col justify-start items-center"
-    [formGroup]="roleForm"
+    [formGroup]="menuForm"
     (ngSubmit)="Create()"
   >
     <h3 class="self-start title-form login-header-title">
@@ -22,11 +22,11 @@
       <span
         class="alert-error"
         *ngIf="
-          roleForm?.controls?.name?.errors?.required &&
-          roleForm?.controls?.name?.touched
+          menuForm?.controls?.name?.errors?.required &&
+          menuForm?.controls?.name?.touched
         "
       >
-        El name es obligatorio
+        El nombre es obligatorio
       </span>
 
       <!-- </div> -->
@@ -42,14 +42,46 @@
         cols="30"
       >
       </textarea>
+      <span
+        class="alert-error"
+        *ngIf="
+          menuForm?.controls?.name?.errors?.required &&
+          menuForm?.controls?.name?.touched
+        "
+      >
+        La Descripción es obligatoria
+      </span>
     </fieldset>
-
+    <fieldset>
+      <select formControlName="type" name="type" id="type">
+        <option value="1">1- Menu Normal</option>
+        <option value="2">2- Complemento</option>
+        <option value="3">3- Postre</option>
+      </select>
+    </fieldset>
+    <fieldset>
+      <label for="price">Precio</label>
+      <input type="number" formControlName="price" name="price" />
+    </fieldset>
+    <fieldset
+      class="flex justify-between items-center h-fit flex-row !flex-row"
+    >
+      <label class="btn btn-d" for="image">Cargar Imagen</label>
+      <input
+        hidden
+        type="file"
+        id="image"
+        accept="image/*"
+        (change)="ConvertImage($event)"
+      />
+      <img src="" width="100" class="image" alt="" />
+    </fieldset>
     <div class="w-full flex justify-between my-2">
       <button type="submit" class="btn text-lg uppercase self-start btn-d">
         {{ btnOption ? "Actualizar" : "Crear" }}
       </button>
       <buttton
-        routerLink="/roles"
+        routerLink="/menus"
         class="btn text-lg uppercase self-start btn-cancel"
       >
         Volver
