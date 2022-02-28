@@ -1,0 +1,57 @@
+<div class="container">
+  <div
+    class="bg-white border-l-2 p-4 border-blue-300 my-4 flex items-center justify-center"
+  >
+    <span style="margin-bottom: 0px" class="title-form !mb-0">
+      Mi Carrito
+    </span>
+  </div>
+
+  <div class="cart justify-between gap-8 grid">
+    <div class="items flex justify-center bg-white shadow rounded-sm flex-col">
+      <div
+        *ngFor="let item of items"
+        class="item hover:bg-gray-100 duration-300 cursor-pointer hover:border-r-2 border-b-2 border-gray-100 p-4 flex justify-between items-center"
+      >
+        <img width="150" src="{{ item.image }}" alt="{{ item.name }}" />
+        <p class="item-name">{{ item.name }}</p>
+        <div class="flex gap-1 items-center justify-center">
+          <button
+            class="btn rounded-full w-8 h-8 text-center flex items-center justify-center bg-gray-400"
+          >
+            +
+          </button>
+          <p>{{ item.quantity }}</p>
+          <button
+            class="btn rounded-full w-8 h-8 text-center flex items-center justify-center bg-gray-300"
+          >
+            -
+          </button>
+        </div>
+        <p class="item-name">${{ item.price }}</p>
+        <span
+          class="remove-item hover:bg-red-700 duration-200 p-2 w-8 h-8 text-center flex items-center justify-center text-white rounded-full shadow-2xl bg-red-500"
+          >X</span
+        >
+      </div>
+    </div>
+    <div class="summary-coupon flex flex-col gap-8">
+      <div class="coupon bg-white shadow-lg rounded-sm p-4">
+        <h3>Tienes coupon?</h3>
+        <div class="flex !flex-row !gap-0 !p-0">
+          <input type="text" placeholder="codigo coupon" />
+          <button class="btn text-white bg-blue-600">Aplicar</button>
+        </div>
+      </div>
+      <div
+        class="summary flex flex-col gap-4 bg-white shadow-lg rounded-sm p-4"
+      >
+        <p class="price-total">Sub Total : $1500</p>
+        <p class="price-total text-red-500">Descuento : $-240</p>
+        <p class="price-total">Total : $2240</p>
+        <button class="btn bg-blue-600 text-white">Realizar Pedido</button>
+        <button class="btn bg-yellow-500">Seguir Comprando</button>
+      </div>
+    </div>
+  </div>
+</div>
