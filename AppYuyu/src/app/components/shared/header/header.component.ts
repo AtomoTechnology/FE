@@ -16,10 +16,11 @@ export class HeaderComponent implements OnInit {
   }
   
   get DetailMenu(){
-    // var result = this.auth.GetDataFromStorage().detail.reduce((sum: any, curr: any) => {
-    //   return sum = sum + curr.quantity;
-    // }, 0)
-    return this.auth.GetDataFromStorage().detail;
+    var result = this.auth.GetDataFromStorage().detail;
+    var count = result.reduce((sum: any, curr: any) => {
+      return sum = sum + curr.quantity;
+    }, 0)
+    return count;
   }
 
   constructor(private auth: AuthService, private router: Router,
