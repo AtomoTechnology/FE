@@ -1,1 +1,55 @@
-<p>Mis orders</p>
+<div class="container">
+  <p-table [value]="myOrders" responsiveLayout="scroll">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        Mis Pedidos
+        <!-- <p-button icon="pi pi-refresh"></p-button> -->
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Codigo</th>
+        <th>Fecha</th>
+        <th>Precio</th>
+        <th>Descuento</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-order>
+      <tr>
+        <td>{{ order?.id }}</td>
+        <td>{{ order?.createdAt | date: "shortTime" }}</td>
+        <td>{{ order?.subTotal | currency: "ARS" }}</td>
+        <td>
+          {{ order?.discount ? order.discount : ("0" | currency: "ARS") }}
+        </td>
+        <td>{{ order?.total | currency: "ARS" }}</td>
+        <td>{{ order?.statuses[order.statuses.length - 1]?.name }}</td>
+        <td>
+          <button (click)="GetOrder(order)" class="btn btn-d !rounded-0">
+            Ver Detalle
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        En total son {{ myOrders ? myOrders.length : 0 }} Pedidos.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<div
+  class="modal hidden absolute left-0 top-0 w-full h-full order order-detail"
+>
+  <div
+    style="background-color: rgba(0, 0, 0, 0.247)"
+    class="overlay w-full h-full absolute"
+  ></div>
+  <div class="modal-content relative bg-white text-red-500 container">
+    {{ item?.id }}
+  </div>
+</div>

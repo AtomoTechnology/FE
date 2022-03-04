@@ -22,7 +22,7 @@ const routes: Routes = [
     canActivate: [RoleGuardGuard],
     component: MyordersComponent,
     data: {
-      expectedRole: ['user'],
+      expectedRole: ['usuario'],
       title: 'Mis Pedidos',
     },
   },

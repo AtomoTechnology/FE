@@ -15,7 +15,7 @@ export class GenericService  implements IService<any, string> {
   constructor(private http: HttpClient, private authService: AuthService)  { }
 
   GetAll(filter: string, ctrl: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl + ctrl}/${filter}`,
+    return this.http.get<any[]>(`${this.baseUrl + ctrl}/?${filter}`,
       {headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'x-access-token': this.authService.getJwtToken()})

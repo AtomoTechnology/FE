@@ -5,4 +5,5 @@ export class ApiController {
   status: string = 'status';
   price: string = 'prices';
   menu: string = 'menus';
+  order: string = 'orders';
 }

@@ -1,1 +1,82 @@
-<p>order works!</p>
+<p-table [value]="orders" dataKey="name" responsiveLayout="scroll">
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 3rem"></th>
+      <th pSortableColumn="name">
+        Codigo <p-sortIcon field="codigo"></p-sortIcon>
+      </th>
+      <th pSortableColumn="name">
+        Name <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th pSortableColumn="price">
+        Sub Total <p-sortIcon field="subTotal"></p-sortIcon>
+      </th>
+      <th pSortableColumn="category">
+        Descuento <p-sortIcon field="discount"></p-sortIcon>
+      </th>
+      <th pSortableColumn="rating">
+        Total <p-sortIcon field="total"></p-sortIcon>
+      </th>
+      <!-- <th pSortableColumn="inventoryStatus">
+        Estado <p-sortIcon field="status"></p-sortIcon>
+      </th> -->
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-order let-expanded="expanded">
+    <tr>
+      <td>
+        <button
+          type="button"
+          pButton
+          pRipple
+          [pRowToggler]="order"
+          class="p-button-text p-button-rounded p-button-plain"
+          [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+        ></button>
+      </td>
+      <td>{{ order.id }}</td>
+      <td>{{ order.user.fullName }}</td>
+      <td>${{ order.subTotal }}</td>
+      <td>${{ order.discount }}</td>
+      <td>${{ order.total }}</td>
+      <!-- <td>{{ order.statuses[order.statuses.length - 1]?.name }}</td> -->
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="rowexpansion" let-order>
+    <tr>
+      <td colspan="7">
+        <div class="p-3">
+          <p-table [value]="order.menus" dataKey="id">
+            <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="id">Imagen</th>
+                <th pSortableColumn="customer">Nombre</th>
+                <th pSortableColumn="date">Cantidad</th>
+                <th pSortableColumn="amount">precio</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-menu>
+              <tr>
+                <td>
+                  <img
+                    class="rounded-full w-16 h-16 shadow"
+                    src="{{ menu.image }}"
+                    alt="{{ menu.name }}"
+                  />
+                </td>
+                <td>{{ menu.name }}</td>
+                <td>{{ menu.order_details.quantity }}</td>
+                <td>{{ menu.price | currency: "$" }}</td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="6">No tiene menu este pedido.</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

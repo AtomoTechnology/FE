@@ -1,124 +1,133 @@
 <div class="container">
-    <p-table #dt [value]="List.users"  dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
-        [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" responsiveLayout="scroll"
-        [paginator]="true" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
-        [filterDelay]="0">
-        <ng-template pTemplate="caption">
-            <div class="table-header">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="flex justify-between items-center">
-                      <h1 class="display-4 py-2 text-truncate text-center">
-                        Lista de usuario
-                      </h1>
-                      <a href="/auth/register" class="btn btn-d">Nuevo usuario</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th pSortableColumn="id">
-                    <div class="flex justify-content-between align-items-center">
-                        Código
-                        <p-sortIcon field="id"></p-sortIcon>                  
-                    </div>
-                </th>
-                <th pSortableColumn="firstName">
-                    <div class="flex justify-content-between align-items-center">
-                        Nombre
-                        <p-sortIcon field="firstName"></p-sortIcon>
-                    </div>
-                </th> 
-                <th pSortableColumn="lastName">
-                    <div class="flex justify-content-between align-items-center">
-                        Apellido
-                        <p-sortIcon field="lastName"></p-sortIcon>
-                    </div>
-                </th>  
-                <th pSortableColumn="email">
-                    <div class="flex justify-content-between align-items-center">
-                        correo
-                        <p-sortIcon field="email"></p-sortIcon>
-                    </div>
-                </th>
-                <th pSortableColumn="phone">
-                    <div class="flex justify-content-between align-items-center">
-                        Teléfono
-                        <p-sortIcon field="phone"></p-sortIcon>
-                    </div>
-                </th>  
-                <th pSortableColumn="role?.name">
-                    <div class="flex justify-content-between align-items-center">
-                        acceso
-                        <p-sortIcon field="price"></p-sortIcon>
-                    </div>
-                </th>       
-                <th pSortableColumn="createdAt">
-                    <div class="flex justify-content-between align-items-center">
-                        Fecha alta
-                        <p-sortIcon field="createdAt"></p-sortIcon>
-                    </div>
-                </th>
-                <th>
-                    <div class="flex justify-content-between align-items-center">
-                        Accion                    
-                    </div>
-                </th>    
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-data>
-            <tr class="p-selectable-row">
-                <td>
-                    {{data.id}}
-                </td>
-                <td>
-                    {{data.firstname}}
-                </td>
-                <td>
-                    {{data.lastname}}
-                </td>
-                <td>
-                    {{data.email}}
-                </td>
-                <td>
-                    {{data.phone}}
-                </td>
-                <td>
-                    {{data.role?.name}}
-                </td>
-                <td>
-                    {{data.createdAt | date: "MM/dd/yyyy"}}                
-                </td> 
-                <td class="mx-2 flex gap-2">
-                    <button
-                      pButton
-                      pRipple
-                      icon="pi pi-pencil"
-                      pTooltip="Actualizar rol"
-                      tooltipPosition="bottom"
-                      class="p-button-rounded p-button-success p-mr-2"
-                      [routerLink]="['/auth/updateregister/' + data.id]"
-                    ></button>
-                    <button
-                      pButton
-                      pRipple
-                      icon="pi pi-trash"
-                      pTooltip="Eliminar rol"
-                      tooltipPosition="bottom"
-                      class="p-button-rounded p-button-danger"
-                      (click)="Delete(data.id)"
-                    ></button>
-                  </td>              
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-            <tr>
-                <td colspan="8">No hay usuario creado.</td>
-            </tr>
-        </ng-template>
-    </p-table>
+  <p-table
+    #dt
+    [value]="List.users"
+    dataKey="id"
+    styleClass="p-datatable-customers"
+    [rowHover]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="loading"
+    responsiveLayout="scroll"
+    [paginator]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
+    [filterDelay]="0"
+  >
+    <ng-template pTemplate="caption">
+      <div class="table-header">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="flex justify-between items-center">
+              <h1 class="display-4 py-2 text-truncate text-center">
+                Lista de usuario
+              </h1>
+              <a href="/auth/register" class="btn btn-d">Nuevo usuario</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id">
+          <div class="flex justify-content-between align-items-center">
+            Código
+            <p-sortIcon field="id"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="firstName">
+          <div class="flex justify-content-between align-items-center">
+            Nombre
+            <p-sortIcon field="firstName"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="lastName">
+          <div class="flex justify-content-between align-items-center">
+            Apellido
+            <p-sortIcon field="lastName"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="email">
+          <div class="flex justify-content-between align-items-center">
+            correo
+            <p-sortIcon field="email"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="phone">
+          <div class="flex justify-content-between align-items-center">
+            Teléfono
+            <p-sortIcon field="phone"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="role?.name">
+          <div class="flex justify-content-between align-items-center">
+            acceso
+            <p-sortIcon field="price"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="createdAt">
+          <div class="flex justify-content-between align-items-center">
+            Fecha alta
+            <p-sortIcon field="createdAt"></p-sortIcon>
+          </div>
+        </th>
+        <th>
+          <div class="flex justify-content-between align-items-center">
+            Accion
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
+      <tr class="p-selectable-row">
+        <td>
+          {{ data.id }}
+        </td>
+        <td>
+          {{ data.firstname }}
+        </td>
+        <td>
+          {{ data.lastname }}
+        </td>
+        <td>
+          {{ data.email }}
+        </td>
+        <td>
+          {{ data.phone }}
+        </td>
+        <td>
+          {{ data.role?.name }}
+        </td>
+        <td>
+          {{ data.createdAt | date: "MM/dd/yyyy" }}
+        </td>
+        <td class="mx-2 flex gap-2">
+          <button
+            pButton
+            pRipple
+            icon="pi pi-pencil"
+            pTooltip="Actualizar rol"
+            tooltipPosition="bottom"
+            class="p-button-rounded p-button-success p-mr-2"
+            [routerLink]="['/auth/updateregister/' + data.id]"
+          ></button>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            pTooltip="Eliminar rol"
+            tooltipPosition="bottom"
+            class="p-button-rounded p-button-danger"
+            (click)="Delete(data.id)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8">No hay usuario creado.</td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>
-
-
