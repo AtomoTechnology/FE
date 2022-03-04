@@ -2,7 +2,6 @@ import { PriceModule } from './components/price/price.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MenuDetailComponent } from './components/menu/menu-detail/menu-detail.component';
-import { CartComponent } from './components/order/cart/cart.component';
 import { SecurityGuardGuard } from './services/security/security-guard.guard';
 import { RoleGuardGuard } from './services/security/role-guard.guard';
 
@@ -17,11 +16,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./components/auth/auth.module').then((m) => m.AuthModule),
   },
-  // {
-  //   path: 'register',
-  //   loadChildren: () =>
-  //     import('./components/auth/auth.module').then((m) => m.AuthModule),
-  // },
   {
     path: 'menu/:name',
     component: MenuDetailComponent,
@@ -50,18 +44,6 @@ const routes: Routes = [
     path: 'prices',
     loadChildren: () =>
       import('./components/price/price.module').then((m) => m.PriceModule),
-  },
-
-  {
-    path: 'cart',
-    component: CartComponent,
-    canLoad: [SecurityGuardGuard],
-    canActivate: [RoleGuardGuard],
-    pathMatch: 'full',
-    data: {
-      expectedRole: ['user'],
-      title: 'Mi carrito',
-    },
   },
   {
     path: '',

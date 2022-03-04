@@ -69,26 +69,32 @@ export class MenuService {
   }
 
   private GetUser() {
-    this.menunav = [
+    this.menunav = [     
       {
-        url: '/orders/myorders',
-        displayName: 'Mis Pedidos',
-        active: 'active Mis Pedidos',
-        icon: 'fas fa-th-list',
-      },
-      {
-        url: '/roles',
-        displayName: 'Role',
-        active: 'Role',
+        url: '/myorders',
+        displayName: 'Mis pedidos',
+        active: 'myorders',
         icon: 'fas fa-th-list',
         span: 'ml-4 title',
       },
       {
-        url: '/statuses',
-        displayName: 'Estados',
-        active: 'Estados',
+        url: '/mycoupon',
+        displayName: 'Mi cupon',
+        active: 'mycoupon',
         icon: 'fas fa-th-list',
         span: 'ml-4 title',
+      }, 
+      {
+        url: '/mydatas',
+        displayName: 'Mis datos',
+        active: 'mydatas',
+        icon: 'fas fa-th-list',
+      }, 
+      {
+        url: '/mypassword',
+        displayName: 'Cambiar contraseña',
+        active: 'mypassword',
+        icon: 'fas fa-th-list',
       },
     ];
     return this.menunav;

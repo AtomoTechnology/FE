@@ -28,32 +28,34 @@ export class HomeComponent implements OnInit {
 
   addDetail(item: any) {
     let isExist = localStorage.getItem('Detail');
-    console.log(isExist);
     let local: any[] = [];
-    debugger;
     if (isExist === null) {
-      let json = {
-        menuId: 1,
-        quantity: 1,
-      };
-      local.push(json);
+
+      item.quantity = 1;
+      item.subtotal = 0;
+      item.total = 0;
+      item.discount = 0;
+
+      local.push(item);
       localStorage.setItem('Detail', JSON.stringify(local));
     } else {
       local = JSON.parse(localStorage.getItem('Detail') || '');
-      let inde = 0;
       let isok = false;
-      let result = local.filter((valor: any, index: any) => {
-        if (valor.menuId == 3) {
-          inde = index;
+      local.filter((valor: any, index: any) => {
+        if (valor.id == item.id) {
+          local[index].quantity++;
           isok = true;
         }
+      }); 
 
-        if (isok) {
-          local[inde].quantity++;
-          localStorage.setItem('Detail', JSON.stringify(local));
-        }
-      });
-      console.log(result);
+      if (!isok) {
+        item.quantity = 1;
+        item.subtotal = 0;
+        item.total = 0;
+        item.discount = 0;
+        local.push(item);
+      }
+      localStorage.setItem('Detail', JSON.stringify(local));
     }
   }
 }
