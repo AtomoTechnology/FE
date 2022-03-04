@@ -1,5 +1,6 @@
-<div class="container h-screen">
-  <div *ngIf="GetQuantity"
+<div class="container">
+  <div
+    *ngIf="GetQuantity"
     class="bg-white border-l-2 p-4 border-blue-300 my-4 flex items-center justify-center"
   >
     <span style="margin-bottom: 0px" class="title-form !mb-0">
@@ -7,7 +8,7 @@
     </span>
   </div>
 
-  <div  *ngIf="GetQuantity" class="cart justify-between gap-8 grid">
+  <div *ngIf="GetQuantity" class="cart justify-between gap-8 grid">
     <div class="items flex justify-center bg-white shadow rounded-sm flex-col">
       <div
         *ngFor="let item of items"
@@ -43,25 +44,39 @@
         <h3>Tienes coupon?</h3>
         <div class="flex !flex-row !gap-0 !p-0">
           <input type="text" placeholder="codigo coupon" />
-          <button class="btn text-white bg-blue-600" (click)="ApplyDiscount()">Aplicar</button>
+          <button class="btn text-white bg-blue-600" (click)="ApplyDiscount()">
+            Aplicar
+          </button>
         </div>
       </div>
       <div
         class="summary flex flex-col gap-4 bg-white shadow-lg rounded-sm p-4"
       >
-        <p class="price-total">Sub Total : ${{subtotal}}</p>
-        <p class="price-total text-red-500">Descuento : $-{{discount}}</p>
-        <p class="price-total">Total : ${{total}}</p>
-        <button class="btn bg-blue-600 text-white">Realizar Pedido <i class="fas fa-shipping-fast"></i></button>
-        <button class="btn bg-yellow-500"  [routerLink]="['/home']"> Seguir Comprando <i class="fas fa-angle-double-right"></i></button>
+        <p class="price-total">Sub Total : ${{ subtotal }}</p>
+        <p class="price-total text-red-500">Descuento : $-{{ discount }}</p>
+        <p class="price-total">Total : ${{ total }}</p>
+        <button class="btn bg-blue-600 text-white">
+          Realizar Pedido <i class="fas fa-shipping-fast"></i>
+        </button>
+        <button class="btn bg-yellow-500" [routerLink]="['/home']">
+          Seguir Comprando <i class="fas fa-angle-double-right"></i>
+        </button>
       </div>
     </div>
   </div>
 
-  <div  *ngIf="!GetQuantity" class="items flex justify-center flex-col items-center gap-8 w-full h-9/12">
+  <div
+    *ngIf="!GetQuantity"
+    class="items flex justify-center flex-col items-center gap-8 w-full empty-cart"
+  >
     <i class="fas fa-cart-plus showmessage"></i>
-    <label for="">Tu carrita esta vacio, agregar un menu para que pueda realizar un pedido</label>
+    <label for=""
+      >Tu carrita esta vacio, agregar un menu para que pueda realizar un
+      pedido</label
+    >
 
-    <button class="btn bg-yellow-500" [routerLink]="['/home']"><i class="fas fa-bars"></i> Ir al menu</button>
+    <button class="btn bg-yellow-500" [routerLink]="['/home']">
+      <i class="fas fa-bars"></i> Ir al menu
+    </button>
   </div>
 </div>

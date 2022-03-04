@@ -1,9 +1,12 @@
 .cart {
   grid-template-columns: 67% 27%;
 }
-.showmessage{
+.empty-cart {
+  height: 70vh;
+}
+.showmessage {
   color: #c55b5b;
-  font-size: 18em;
+  font-size: 10em;
 }
 
 @media (max-width: 650px) {
