@@ -69,9 +69,9 @@ export class MenuService {
   }
 
   private GetUser() {
-    this.menunav = [     
+    this.menunav = [
       {
-        url: '/myorders',
+        url: 'orders/myorders',
         displayName: 'Mis pedidos',
         active: 'myorders',
         icon: 'fas fa-th-list',
@@ -83,13 +83,13 @@ export class MenuService {
         active: 'mycoupon',
         icon: 'fas fa-th-list',
         span: 'ml-4 title',
-      }, 
+      },
       {
         url: '/mydatas',
         displayName: 'Mis datos',
         active: 'mydatas',
         icon: 'fas fa-th-list',
-      }, 
+      },
       {
         url: '/mypassword',
         displayName: 'Cambiar contraseña',

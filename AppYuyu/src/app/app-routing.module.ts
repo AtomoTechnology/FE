@@ -16,10 +16,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./components/auth/auth.module').then((m) => m.AuthModule),
   },
-  {
-    path: 'menu/:name',
-    component: MenuDetailComponent,
-  },
+
   {
     path: 'menus',
     loadChildren: () =>

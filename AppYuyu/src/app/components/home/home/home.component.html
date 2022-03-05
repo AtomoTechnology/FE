@@ -11,10 +11,16 @@
         <div class="menu-header relative">
           <!-- <div class="img"></div> -->
           <img
+            routerLink="/menus/{{ menu.name.trim() }}/{{ menu.id }}"
             *ngIf="menu.image"
-            src="{{ menu.image }}"
+            src="{{
+              menu.image
+                ? menu.image
+                : './../../../../../assets/img/menuDefault.jpg'
+            }}"
             alt="{{ menu.name }}"
           />
+
           <div
             class="icons-actions-menu hidden shadow-2xl rounded-sm flex-col justify-center items-center absolute top-0 left-0 bg-white m-1"
           >
