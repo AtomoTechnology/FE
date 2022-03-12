@@ -38,4 +38,8 @@ export class MyordersComponent implements OnInit {
     this.item = order;
     document.querySelector('.modal')?.classList.toggle('hidden');
   }
+
+  ToogleModal() {
+    document.querySelector('.modal')?.classList.toggle('hidden');
+  }
 }

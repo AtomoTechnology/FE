@@ -12,7 +12,7 @@
     <div class="items flex justify-center bg-white shadow rounded-sm flex-col">
       <div
         *ngFor="let item of items"
-        class="item hover:bg-gray-100 duration-300 cursor-pointer hover:border-r-2 border-b-2 border-gray-100 p-4 flex justify-between items-center"
+        class="item hover:bg-gray-100 duration-300 cursor-pointer hover:border-r-2 border-b-2 border-gray-100 p-4 flex sm:flex-row flex-col justify-between items-center"
       >
         <img width="150" src="{{ item.image }}" alt="{{ item.name }}" />
         <p class="item-name">{{ item.name }}</p>
