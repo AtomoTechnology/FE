@@ -18,17 +18,19 @@
         <p class="item-name">{{ item.name }}</p>
         <div class="flex gap-1 items-center justify-center">
           <button
+            class="btn rounded-full w-8 h-8 text-center flex items-center justify-center bg-gray-300"
+            (click)="LessOrder(item)"
+          >
+          <i *ngIf="item.quantity === 1" class="fas fa-trash"></i>
+          <p *ngIf="item.quantity > 1">-</p>
+          </button>
+          <p>{{ item.quantity }}</p>
+          
+          <button
             class="btn rounded-full w-8 h-8 text-center flex items-center justify-center bg-gray-400"
             (click)="MoreOrder(item)"
           >
             +
-          </button>
-          <p>{{ item.quantity }}</p>
-          <button
-            class="btn rounded-full w-8 h-8 text-center flex items-center justify-center bg-gray-300"
-            (click)="LessOrder(item)"
-          >
-            -
           </button>
         </div>
         <p class="item-name">${{ item.price }}</p>
@@ -55,7 +57,7 @@
         <p class="price-total">Sub Total : ${{ subtotal }}</p>
         <p class="price-total text-red-500">Descuento : $-{{ discount }}</p>
         <p class="price-total">Total : ${{ total }}</p>
-        <button class="btn bg-blue-600 text-white">
+        <button class="btn bg-blue-600 text-white" (click)="RealizeOrder()">
           Realizar Pedido <i class="fas fa-shipping-fast"></i>
         </button>
         <button class="btn bg-yellow-500" [routerLink]="['/home']">

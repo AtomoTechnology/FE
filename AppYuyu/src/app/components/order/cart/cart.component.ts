@@ -1,7 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ApiController } from 'src/app/controller/ApiController';
 import { AuthService } from 'src/app/services/auth.service';
 import { GenericService } from 'src/app/services/generic.service';
+import { MessageService } from 'src/app/services/message.service';
+import { Price } from '../../../Interface/price';
 
 @Component({
   selector: 'app-cart',
@@ -23,9 +26,12 @@ export class CartComponent implements OnInit {
     return count;
   }
 
-  constructor(private auth: AuthService, private genericService: GenericService) {}
+  constructor(private auth: AuthService, private genericService: GenericService,
+    private messageService: MessageService) {}
 
   ngOnInit(): void {
+    debugger;
+    var aver = this.GetQuantity;
     this.GetAllDetail();
   }
 
@@ -77,5 +83,53 @@ export class CartComponent implements OnInit {
     if(!this.GetQuantity){
       localStorage.removeItem('Detail');
     }
+  }
+  RealizeOrder(){
+    debugger;
+    var pricetotal = this.items.reduce((sum: any, curr: any) => {
+      return sum = sum + (parseInt(curr.quantity) * parseInt(curr.price));
+    }, 0);
+     var order={
+      order:{
+        userId:parseInt(this.auth.GetDataFromStorage().userId),
+        total:pricetotal,
+        state: 1,
+      },
+      OrderDetail:[{}]
+     };
+     order.OrderDetail =[];
+     this.items.forEach((element : any) => {
+       var orderdetail ={
+         menuId: element.id,
+         quantity: element.quantity,
+         orderId: 0,
+         subtotal:(parseInt(element.quantity) * parseInt(element.price))
+       };
+       order.OrderDetail.push(orderdetail);
+     });
+debugger;
+      this.genericService.Post(order, this.ctrl.order).subscribe(
+        (data:any) => {
+          if (data.status) {
+            setTimeout(()=>{
+              localStorage.removeItem("Detail");
+            }, 5000);
+            this.messageService.Success('Registrar pedido', "Tu pedido ha sido registrado");
+            
+          }
+          else{
+            this.messageService.Error('Error',"El usuario no fue registrado con exito");
+          }
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err);
+          if( err.error.message === "Validation error"){
+            this.messageService.Error('Error',err.error.err.errors[0].message);
+          }
+          else{
+          this.messageService.Error('Error',err.error.message);
+          }
+        }
+      );
   }
 }
