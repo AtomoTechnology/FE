@@ -45,8 +45,6 @@ export class CartComponent implements OnInit {
 
   ApplyDiscount(){
     this.genericService.GetAll("nro=", this.ctrl.coupon).subscribe((data: any) => {
-       // this.discount = 23;
-    // this.total = this.total  - this.discount;
     });
   
   }
@@ -85,7 +83,6 @@ export class CartComponent implements OnInit {
     }
   }
   RealizeOrder(){
-    debugger;
     var pricetotal = this.items.reduce((sum: any, curr: any) => {
       return sum = sum + (parseInt(curr.quantity) * parseInt(curr.price));
     }, 0);
@@ -107,7 +104,6 @@ export class CartComponent implements OnInit {
        };
        order.OrderDetail.push(orderdetail);
      });
-debugger;
       this.genericService.Post(order, this.ctrl.order).subscribe(
         (data:any) => {
           if (data.status) {
