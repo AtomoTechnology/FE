@@ -6,52 +6,60 @@ import { IService } from '../Interface/IService';
 import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class GenericService  implements IService<any, string> {
-  
+export class GenericService implements IService<any, string> {
   private baseUrl = environment.AppUrl;
 
-  constructor(private http: HttpClient, private authService: AuthService)  { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   GetAll(filter: string, ctrl: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl + ctrl}/?${filter}`,
-      {headers: new HttpHeaders({
+    return this.http.get<any[]>(`${this.baseUrl + ctrl}${filter}`, {
+      headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'x-access-token': this.authService.getJwtToken()})
-      });
+        'x-access-token': this.authService.getJwtToken(),
+      }),
+    });
   }
 
   GetById(id: number, ctrl: string): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl + ctrl}/${id}`,
-       {headers: new HttpHeaders({
-         'Content-Type': 'application/json',
-         'x-access-token': this.authService.getJwtToken()})
-       });
+    return this.http.get<any>(`${this.baseUrl + ctrl}/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-access-token': this.authService.getJwtToken(),
+      }),
+    });
   }
 
   Post(model: any, ctrl: string): Observable<any> {
-    return this.http.post(`${this.baseUrl + ctrl}`,JSON.stringify(model),
-    {headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'x-access-token': this.authService.getJwtToken()})
+    return this.http.post(`${this.baseUrl + ctrl}`, JSON.stringify(model), {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-access-token': this.authService.getJwtToken(),
+      }),
     });
   }
 
   Put(model: any, ctrl: string) {
     debugger;
-    return this.http.put(`${this.baseUrl + ctrl}/${model.id}`,JSON.stringify(model),
-    {headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'x-access-token': this.authService.getJwtToken()})
-    });
-  }    
+    return this.http.put(
+      `${this.baseUrl + ctrl}/${model.id}`,
+      JSON.stringify(model),
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'x-access-token': this.authService.getJwtToken(),
+        }),
+      }
+    );
+  }
 
   Delete(id: number, ctrl: string) {
-    return this.http.delete(`${this.baseUrl + ctrl}/${id}`,
-    {headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'x-access-token': this.authService.getJwtToken()})
+    return this.http.delete(`${this.baseUrl + ctrl}/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-access-token': this.authService.getJwtToken(),
+      }),
     });
   }
 }

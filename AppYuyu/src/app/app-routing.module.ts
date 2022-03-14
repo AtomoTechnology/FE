@@ -43,6 +43,16 @@ const routes: Routes = [
       import('./components/price/price.module').then((m) => m.PriceModule),
   },
   {
+    path: 'mydata/:id',
+    loadChildren: () =>
+      import('./components/mydata/mydata.module').then((m) => m.MydataModule),
+  },
+  {
+    path: 'user/:name/coupon',
+    loadChildren: () =>
+      import('./components//coupon/coupon.module').then((m) => m.CouponModule),
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full',

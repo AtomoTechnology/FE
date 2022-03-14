@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class MenuService {
   menunav: any;
-  constructor() {}
+  constructor(public authService: AuthService) {}
 
   GetMenu(role: string) {
     return this.GetTypeUser(role);
@@ -77,24 +78,22 @@ export class MenuService {
         icon: 'fas fa-th-list',
         span: 'ml-4 title',
       },
+
       {
-        url: '/mycoupon',
+        url: `/mydata/${this.authService.GetDataFromStorage().userId}`,
+        displayName: 'Mis datos',
+        active: 'mydata',
+        icon: 'fas fa-th-list',
+      },
+      {
+        url: `/user/${this.authService
+          .GetDataFromStorage()
+          .fullName.trim()
+          .replace(/ /g, '-')}/coupon`,
         displayName: 'Mi cupon',
         active: 'mycoupon',
         icon: 'fas fa-th-list',
         span: 'ml-4 title',
-      },
-      {
-        url: '/mydatas',
-        displayName: 'Mis datos',
-        active: 'mydatas',
-        icon: 'fas fa-th-list',
-      },
-      {
-        url: '/mypassword',
-        displayName: 'Cambiar contraseña',
-        active: 'mypassword',
-        icon: 'fas fa-th-list',
       },
     ];
     return this.menunav;

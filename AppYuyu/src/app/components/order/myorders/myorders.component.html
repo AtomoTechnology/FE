@@ -43,14 +43,66 @@
 </div>
 
 <div
-  class="modal hidden absolute left-0 top-0 w-full h-full order order-detail"
+  class="modal hidden justify-center items-center flex absolute left-0 top-0 w-full h-full order order-detail"
 >
   <div
     (click)="ToogleModal()"
-    style="background-color: rgba(0, 0, 0, 0.247)"
+    style="background-color: rgba(0, 0, 0, 0.747)"
     class="overlay w-full h-full absolute"
   ></div>
-  <div class="modal-content relative bg-white text-red-500 container">
-    {{ item?.id }}
+  <div
+    class="modal-content flex flex-col gap-4 relative bg-gray-100 container p-4"
+  >
+    <div
+      (click)="ToogleModal()"
+      class="close btn-close hover:bg-red-400 cursor-pointer hover:shadow-2xl flex items-center justify-center absolute top-2 right-4 w-8 h-8 rounded-full bg-red-600 text-white shadow-md"
+    >
+      X
+    </div>
+    <div
+      class="header flex flex-col sm:flex-row justify-between items-center gap-2 mb-4 p-4"
+    >
+      <div class="left">
+        <p>Codigo : {{ item?.id }}</p>
+        <p>Cliente : {{ item?.user?.fullName }}</p>
+        <p>Estado : {{ item?.statuses[item.statuses.length - 1]?.name }}</p>
+      </div>
+      <div class="right mr-4">
+        <p>Sub Total : {{ item?.subTotal }}</p>
+        <p>Descuento : {{ item?.discount ? item.discount : 0 }}</p>
+        <p>Total : {{ item?.total }}</p>
+      </div>
+    </div>
+    <hr />
+    <table class="w-full">
+      <thead class="bg-blue-400 text-white font-bold p-2 mb-4">
+        <tr>
+          <td>Imagen</td>
+          <td>Nombre Menu</td>
+          <td>Precio</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prod of item?.menus" class="shadow-sm p-2 mb-4">
+          <td>
+            <img
+              src="{{ prod.image }}"
+              class="w-12 h-12 rounded-full shadow"
+              alt="prod.name"
+            />
+          </td>
+          <td>
+            <p>{{ prod.name }}</p>
+          </td>
+          <td>
+            <p>{{ prod.price }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button (click)="ToogleModal()" class="btn bg-gray-800 text-white self-end">
+      Cerrar
+    </button>
   </div>
 </div>

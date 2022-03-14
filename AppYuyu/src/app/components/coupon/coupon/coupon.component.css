@@ -1,0 +1,10 @@
+.icon-gift::before {
+  content: "";
+  width: 100px;
+  height: 100px;
+  background-color: rgb(221, 221, 221);
+  position: absolute;
+  z-index: -1;
+  border-radius: 44px 50px 7px 87px;
+  transform: translate(20px, 10px);
+}

@@ -1,0 +1,90 @@
+<div class="user-setting grid grid-t-30-70 gap-4 container">
+  <div class="left shadow bg-white">
+    <div
+      class="header p-4 flex items-center justify-center flex-col gap-4 bg-gray-100"
+    >
+      <img
+        width="100"
+        class="rounded-full shadow-md object-cover overflow-hidden"
+        src="https://www.pngitem.com/pimgs/m/421-4212266_transparent-default-avatar-png-default-avatar-images-png.png"
+        alt=""
+      />
+      <span class="text-center">{{ user?.fullName }}</span>
+    </div>
+    <ul class="">
+      <li class="p-2 hover:bg-gray-200 hover:text-blue-500">
+        <a href="#mydata">Mis Datos </a>
+      </li>
+      <li class="p-2 hover:bg-gray-200 hover:text-blue-500">
+        <a routerLink="/#mydata">Cambiar Contraseña </a>
+      </li>
+      <li class="p-2 hover:bg-gray-200 hover:text-blue-500">
+        <a href="#">otros </a>
+      </li>
+    </ul>
+  </div>
+  <section class="right">
+    <section
+      id="mydata"
+      class="my-data flex flex-col gap-2 bg-white shadow p-4"
+    >
+      <div class="">
+        <label class="ml-2">Nombre : </label>
+        <span>{{ user?.firstname }}</span>
+      </div>
+      <div class="">
+        <label class="ml-2">Apellido : </label>
+        <span>{{ user?.lastname }}</span>
+      </div>
+      <div class="">
+        <label class="ml-2">Email : </label>
+        <span>{{ user?.email }}</span>
+      </div>
+      <div class="">
+        <label class="ml-2">dirección : </label>
+        <span>{{ user?.adress }}</span>
+      </div>
+      <div class="">
+        <label class="ml-2">Teléfono: </label>
+        <span>{{ user?.phone }}</span>
+      </div>
+      <div>
+        <button class="btn btn-d">Editar</button>
+      </div>
+    </section>
+    <section
+      id="updatepassword"
+      class="update-password bg-white shadow my-2 p-4"
+    >
+      <form action="">
+        <fieldset>
+          <label for="old">Actual Contraseña</label>
+          <input
+            type="password"
+            name="oldpass"
+            placeholder="Ingrese el actual contraseña"
+          />
+        </fieldset>
+        <fieldset>
+          <label for="old">Nueva Contraseña</label>
+          <input
+            type="password"
+            name="newpass"
+            placeholder="Ingrese el actual contraseña"
+          />
+        </fieldset>
+        <fieldset>
+          <label for="old">Repita Contraseña</label>
+          <input
+            type="password"
+            name="confirmpass"
+            placeholder="Ingrese el actual contraseña"
+          />
+        </fieldset>
+        <fieldset>
+          <button class="btn btn-d">Actualizar Contraseña</button>
+        </fieldset>
+      </form>
+    </section>
+  </section>
+</div>
