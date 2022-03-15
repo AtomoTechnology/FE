@@ -1,90 +1,227 @@
-<div class="user-setting grid grid-t-30-70 gap-4 container">
-  <div class="left shadow bg-white">
+<div class="relative">
+  <aside class="modal hidden z-20 w-full h-full fixed modal-update-user">
     <div
-      class="header p-4 flex items-center justify-center flex-col gap-4 bg-gray-100"
+      (click)="toggleModal()"
+      class="overlay fixed h-full w-full top-0 left-0 bg-opacity-40 bg-black"
+    ></div>
+    <div
+      class="modal-content fixed w-11/12 sm:w-1/2 flex p-6 h-full top-0 left-0 z-30"
     >
-      <img
-        width="100"
-        class="rounded-full shadow-md object-cover overflow-hidden"
-        src="https://www.pngitem.com/pimgs/m/421-4212266_transparent-default-avatar-png-default-avatar-images-png.png"
-        alt=""
-      />
-      <span class="text-center">{{ user?.fullName }}</span>
+      <span
+        class="close absolute bg-white text-red-500 hover:text-res-700 top-1 right-1 close-modal shadow flex items-center justify-center rounded-full w-8 h-8"
+        (click)="toggleModal()"
+        >X</span
+      >
+      <form
+        autocomplete="off"
+        action="#"
+        [formGroup]="userForm"
+        class="overflow-auto bg-white p-4 mx-3 h-auto shadow-xl rounded-sm form flex flex-col justify-start items-center"
+      >
+        <h3 class="self-start">Editar Tus Datos</h3>
+        <fieldset>
+          <label for="firsname">Nombre</label>
+          <input
+            type="text"
+            formControlName="firstname"
+            id="firstname"
+            name="firstname"
+            placeholder="Ingrese su nombre"
+          />
+          <span
+            *ngIf="
+              userForm.controls.firstname.errors &&
+              userForm.controls.firstname.touched
+            "
+            class="alert-error"
+          >
+            El nombre es obligatorio
+          </span>
+        </fieldset>
+        <fieldset>
+          <label for="lastname">Apellido</label>
+          <input
+            type="text"
+            formControlName="lastname"
+            id="lastname"
+            name="lastname"
+            placeholder="Ingrese su apellido"
+          />
+          <span
+            *ngIf="
+              userForm.controls.lastname.errors &&
+              userForm.controls.lastname.touched
+            "
+            class="alert-error"
+          >
+            El apellido es obligatorio
+          </span>
+        </fieldset>
+        <fieldset>
+          <label for="email">Email</label>
+          <input
+            type="email"
+            formControlName="email"
+            id="email"
+            placeholder="Ingrese su email"
+          />
+          <span
+            *ngIf="
+              userForm.controls.email.errors && userForm.controls.email.touched
+            "
+            class="alert-error"
+          >
+            El email es obligatorio y debe ser valido
+          </span>
+        </fieldset>
+
+        <fieldset>
+          <label for="adress">Direccion</label>
+          <input
+            formControlName="adress"
+            id="adress"
+            type="text"
+            name="adress"
+            placeholder="Ingrese su direccion"
+          />
+          <span
+            *ngIf="
+              userForm.controls.adress.errors &&
+              userForm.controls.adress.touched
+            "
+            class="alert-error"
+          >
+            La direccion es obligatoria
+          </span>
+        </fieldset>
+        <fieldset>
+          <label for="phone">Telefono</label>
+          <input
+            type="text"
+            formControlName="phone"
+            id="phone"
+            name="phone"
+            placeholder="Ingrese su telefono"
+          />
+          <span
+            *ngIf="
+              userForm.controls.phone.errors && userForm.controls.phone.touched
+            "
+            class="alert-error"
+          >
+            El numero de celular es obligatorio
+          </span>
+        </fieldset>
+        <div class="w-full flex justify-between my-2">
+          <button type="submit" class="btn text-lg uppercase self-start btn-d">
+            Editar
+          </button>
+          <!-- <buttton *ngIf="IsAuth"
+        routerLink="/auth/users"
+        class="btn text-lg uppercase self-start btn-cancel"
+        >
+        Volver
+      </buttton> -->
+        </div>
+      </form>
     </div>
-    <ul class="">
-      <li class="p-2 hover:bg-gray-200 hover:text-blue-500">
-        <a href="#mydata">Mis Datos </a>
-      </li>
-      <li class="p-2 hover:bg-gray-200 hover:text-blue-500">
-        <a routerLink="/#mydata">Cambiar Contraseña </a>
-      </li>
-      <li class="p-2 hover:bg-gray-200 hover:text-blue-500">
-        <a href="#">otros </a>
-      </li>
-    </ul>
-  </div>
-  <section class="right">
-    <section
-      id="mydata"
-      class="my-data flex flex-col gap-2 bg-white shadow p-4"
-    >
-      <div class="">
-        <label class="ml-2">Nombre : </label>
-        <span>{{ user?.firstname }}</span>
+  </aside>
+  <div class="user-setting relative grid grid-t-30-70 gap-4 container">
+    <div class="left shadow bg-white">
+      <div
+        class="header p-4 flex items-center justify-center flex-col gap-4 bg-gray-100"
+      >
+        <img
+          width="100"
+          class="rounded-full shadow-md object-cover overflow-hidden"
+          src="https://www.pngitem.com/pimgs/m/421-4212266_transparent-default-avatar-png-default-avatar-images-png.png"
+          alt=""
+        />
+        <span class="text-center">{{ user?.fullName }}</span>
       </div>
-      <div class="">
-        <label class="ml-2">Apellido : </label>
-        <span>{{ user?.lastname }}</span>
-      </div>
-      <div class="">
-        <label class="ml-2">Email : </label>
-        <span>{{ user?.email }}</span>
-      </div>
-      <div class="">
-        <label class="ml-2">dirección : </label>
-        <span>{{ user?.adress }}</span>
-      </div>
-      <div class="">
-        <label class="ml-2">Teléfono: </label>
-        <span>{{ user?.phone }}</span>
-      </div>
-      <div>
-        <button class="btn btn-d">Editar</button>
-      </div>
-    </section>
-    <section
-      id="updatepassword"
-      class="update-password bg-white shadow my-2 p-4"
-    >
-      <form action="">
-        <fieldset>
-          <label for="old">Actual Contraseña</label>
-          <input
-            type="password"
-            name="oldpass"
-            placeholder="Ingrese el actual contraseña"
-          />
-        </fieldset>
-        <fieldset>
-          <label for="old">Nueva Contraseña</label>
-          <input
-            type="password"
-            name="newpass"
-            placeholder="Ingrese el actual contraseña"
-          />
-        </fieldset>
-        <fieldset>
+      <ul class="">
+        <li class="p-2 hover:bg-gray-200 hover:text-blue-500">
+          <a href="#mydata">Mis Datos </a>
+        </li>
+        <li class="p-2 hover:bg-gray-200 hover:text-blue-500">
+          <a routerLink="/#mydata">Cambiar Contraseña </a>
+        </li>
+        <li class="p-2 hover:bg-gray-200 hover:text-blue-500">
+          <a href="#">otros </a>
+        </li>
+      </ul>
+    </div>
+    <section class="right">
+      <section
+        id="mydata"
+        class="my-data flex flex-col gap-2 bg-white shadow p-4"
+      >
+        <div class="">
+          <label class="ml-2">Nombre : </label>
+          <span>{{ user?.firstname }}</span>
+        </div>
+        <div class="">
+          <label class="ml-2">Apellido : </label>
+          <span>{{ user?.lastname }}</span>
+        </div>
+        <div class="">
+          <label class="ml-2">Email : </label>
+          <span>{{ user?.email }}</span>
+        </div>
+        <div class="">
+          <label class="ml-2">dirección : </label>
+          <span>{{ user?.adress }}</span>
+        </div>
+        <div class="">
+          <label class="ml-2">Teléfono: </label>
+          <span>{{ user?.phone }}</span>
+        </div>
+        <div>
+          <button class="btn btn-d btn-edit-user" (click)="toggleModal()">
+            Editar
+          </button>
+        </div>
+      </section>
+      <section
+        id="updatepassword"
+        class="update-password bg-white shadow my-2 p-4"
+      >
+        <form
+          [formGroup]="passwordForm"
+          (ngSubmit)="UpdatePassword()"
+          action=""
+        >
+          <fieldset>
+            <label for="old">Actual Contraseña</label>
+            <input
+              formControlName="oldPassword"
+              type="password"
+              name="oldPassword"
+              placeholder="Ingrese el actual contraseña"
+            />
+          </fieldset>
+          <fieldset>
+            <label for="old">Nueva Contraseña</label>
+            <input
+              formControlName="password"
+              type="password"
+              name="password"
+              placeholder="Ingrese el actual contraseña"
+            />
+          </fieldset>
+          <!-- <fieldset>
           <label for="old">Repita Contraseña</label>
           <input
-            type="password"
+          type="password"
             name="confirmpass"
             placeholder="Ingrese el actual contraseña"
-          />
-        </fieldset>
-        <fieldset>
-          <button class="btn btn-d">Actualizar Contraseña</button>
-        </fieldset>
-      </form>
+            />
+        </fieldset> -->
+          <fieldset>
+            <button class="btn btn-d">Actualizar Contraseña</button>
+          </fieldset>
+        </form>
+      </section>
     </section>
-  </section>
+  </div>
 </div>
