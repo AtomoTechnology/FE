@@ -24,7 +24,7 @@ export class MyordersComponent implements OnInit {
   GetAll() {
     this.genericService
       .GetAll(
-        'userId=' + this.auth.GetDataFromStorage().userId,
+        '/userId=' + this.auth.GetDataFromStorage().userId,
         `${this.ctrl.order}`
       )
       .subscribe((data: any) => {

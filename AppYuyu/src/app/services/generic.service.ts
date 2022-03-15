@@ -41,7 +41,7 @@ export class GenericService implements IService<any, string> {
   }
 
   Put(model: any, ctrl: string) {
-    debugger;
+    // debugger;
     return this.http.put(
       `${this.baseUrl + ctrl}/${model.id}`,
       JSON.stringify(model),
@@ -52,6 +52,19 @@ export class GenericService implements IService<any, string> {
         }),
       }
     );
+  }
+  UpdatePassword(model: any, ctrl: string) {
+    try {
+      return this.http.put(`${this.baseUrl + ctrl}`, JSON.stringify(model), {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'x-access-token': this.authService.getJwtToken(),
+        }),
+      });
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+    // debugger;
   }
 
   Delete(id: number, ctrl: string) {

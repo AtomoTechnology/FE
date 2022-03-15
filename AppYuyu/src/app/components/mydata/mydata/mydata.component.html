@@ -15,6 +15,7 @@
       <form
         autocomplete="off"
         action="#"
+        (ngSubmit)="EditUser()"
         [formGroup]="userForm"
         class="overflow-auto bg-white p-4 mx-3 h-auto shadow-xl rounded-sm form flex flex-col justify-start items-center"
       >
@@ -139,16 +140,16 @@
         />
         <span class="text-center">{{ user?.fullName }}</span>
       </div>
-      <ul class="">
-        <li class="p-2 hover:bg-gray-200 hover:text-blue-500">
-          <a href="#mydata">Mis Datos </a>
+      <ul class="menu-setting-user">
+        <li class="p-2 active item-menu hover:bg-gray-200 hover:text-blue-500">
+          <span>Mis Datos </span>
         </li>
-        <li class="p-2 hover:bg-gray-200 hover:text-blue-500">
-          <a routerLink="/#mydata">Cambiar Contraseña </a>
-        </li>
-        <li class="p-2 hover:bg-gray-200 hover:text-blue-500">
-          <a href="#">otros </a>
-        </li>
+        <!-- <li
+          (click)="toggleActive($event)"
+          class="p-2 item-menu hover:bg-gray-200 hover:text-blue-500"
+        >
+          <span>Cambiar Contraseña </span>
+        </li> -->
       </ul>
     </div>
     <section class="right">
@@ -186,28 +187,42 @@
         id="updatepassword"
         class="update-password bg-white shadow my-2 p-4"
       >
-        <form
-          [formGroup]="passwordForm"
-          (ngSubmit)="UpdatePassword()"
-          action=""
-        >
+        <form [formGroup]="passwordForm" (ngSubmit)="UpdatePassword()">
           <fieldset>
             <label for="old">Actual Contraseña</label>
             <input
-              formControlName="oldPassword"
+              formControlName="currentPassword"
               type="password"
-              name="oldPassword"
+              name="currentPassword"
               placeholder="Ingrese el actual contraseña"
             />
+            <span
+              *ngIf="
+                passwordForm.controls.currentPassword.errors &&
+                passwordForm.controls.currentPassword.touched
+              "
+              class="alert-error"
+            >
+              Minimo 5 caracteres
+            </span>
           </fieldset>
           <fieldset>
-            <label for="old">Nueva Contraseña</label>
+            <label for="password">Nueva Contraseña</label>
             <input
               formControlName="password"
               type="password"
               name="password"
               placeholder="Ingrese el actual contraseña"
             />
+            <span
+              *ngIf="
+                passwordForm.controls.password.errors &&
+                passwordForm.controls.password.touched
+              "
+              class="alert-error"
+            >
+              Minimo 5 caracteres
+            </span>
           </fieldset>
           <!-- <fieldset>
           <label for="old">Repita Contraseña</label>
@@ -218,7 +233,9 @@
             />
         </fieldset> -->
           <fieldset>
-            <button class="btn btn-d">Actualizar Contraseña</button>
+            <button type="submit" class="btn btn-d">
+              Actualizar Contraseña
+            </button>
           </fieldset>
         </form>
       </section>

@@ -23,7 +23,7 @@ body {
   cursor: pointer;
   box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.192), inset 2px 2px 5px #043b6836,
     inset -3px -3px 5px #12466c0f;
-    border-radius: 0.5em;
+  border-radius: 0.5em;
 }
 .btn-d {
   background-color: var(--bg-primary);
@@ -73,6 +73,9 @@ fieldset {
 label {
   font-weight: 700;
   color: rgb(0, 24, 44);
+}
+li {
+  cursor: pointer;
 }
 .jhm-shadow {
   box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.192), inset 2px 2px 5px #043b6836,
