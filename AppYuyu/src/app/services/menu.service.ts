@@ -59,6 +59,13 @@ export class MenuService {
         span: 'ml-4 title',
       },
       {
+        url: '/coupon/createcoupon',
+        displayName: 'Crear cupon',
+        active: 'coupon',
+        icon: 'fas fa-th-list',
+        span: 'ml-4 title',
+      },
+      {
         url: '/menus',
         displayName: 'Menus',
         active: 'Menus',

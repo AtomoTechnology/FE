@@ -25,7 +25,8 @@ export class CartComponent implements OnInit {
     }, 0)
     return count;
   }
-
+  urlreference: string= `/user/${this.auth.GetDataFromStorage().fullName.trim().replace(/ /g, '-')}/coupon`;
+  
   constructor(private auth: AuthService, private genericService: GenericService,
     private messageService: MessageService) {}
 
@@ -36,6 +37,7 @@ export class CartComponent implements OnInit {
   }
 
   GetAllDetail(){
+    debugger;
     this.items = JSON.parse(localStorage.getItem('Detail') || '');
     this.subtotal = this.items.reduce((subtotal: any,curr: any) => {
       return  subtotal = subtotal + (curr.price * curr.quantity);
@@ -78,10 +80,27 @@ export class CartComponent implements OnInit {
     this.total = (this.total - parseInt(item.price))  - this.discount;
     this.subtotal = this.subtotal - parseInt(item.price);
 
+    if(item.quantity === 0){
+      
+      var index = local.findIndex((u:any) => u.id === item.id)
+      var newval = local.splice( 0, index );
+      localStorage.setItem('Detail', JSON.stringify(newval));
+      this.GetAllDetail();
+    };
+
     if(!this.GetQuantity){
       localStorage.removeItem('Detail');
     }
   }
+
+  RemoveItem(item: any){
+    let local = JSON.parse(localStorage.getItem('Detail') || '');
+    var index = local.findIndex((u:any) => u.id === item.id)
+    var newval = local.splice( 0, index );
+    localStorage.setItem('Detail', JSON.stringify(newval));
+    this.GetAllDetail();
+  }
+
   RealizeOrder(){
     var pricetotal = this.items.reduce((sum: any, curr: any) => {
       return sum = sum + (parseInt(curr.quantity) * parseInt(curr.price));
@@ -107,9 +126,9 @@ export class CartComponent implements OnInit {
       this.genericService.Post(order, this.ctrl.order).subscribe(
         (data:any) => {
           if (data.status) {
-            setTimeout(()=>{
+            // setTimeout(()=>{
               localStorage.removeItem("Detail");
-            }, 5000);
+            // }, 5000);
             this.messageService.Success('Registrar pedido', "Tu pedido ha sido registrado");
             
           }
@@ -118,7 +137,6 @@ export class CartComponent implements OnInit {
           }
         },
         (err: HttpErrorResponse) => {
-          console.log(err);
           if( err.error.message === "Validation error"){
             this.messageService.Error('Error',err.error.err.errors[0].message);
           }

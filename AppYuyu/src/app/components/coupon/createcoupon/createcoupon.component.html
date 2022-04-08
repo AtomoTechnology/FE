@@ -1,0 +1,132 @@
+<div class="login justify-center items-center my-4 h-full flex">
+    <form
+      autocomplete="off"
+      action="#"
+      class="form-login bg-white p-8 mx-3 h-auto shadow-xl rounded-sm form flex flex-col justify-start items-center"
+      [formGroup]="cuponForm"
+      (ngSubmit)="Create()"
+    >
+      <h3 class="self-start title-form login-header-title">
+        {{ option }}
+      </h3>
+  
+      <fieldset>
+        <label for="name">Nombre del cupon</label>
+        <input
+          type="text"
+          formControlName="name"
+          placeholder="Ingrese un nombre del cupon"
+          name="name"
+        />
+        <!-- <div class="text-red-400"> -->
+        <span
+          class="alert-error"
+          *ngIf="
+          cuponForm?.controls?.name?.errors?.required &&
+          cuponForm?.controls?.name?.touched
+          "
+        >
+          El name es obligatorio
+        </span>
+  
+        <!-- </div> -->
+      </fieldset>
+  
+      <fieldset>
+        <label for="name">Fecha de vencimiento</label>
+        <input
+          type="date"
+          formControlName="expiredDate"
+          name="expiredDate"
+        />
+        <!-- <div class="text-red-400"> -->
+        <span
+          class="alert-error"
+          *ngIf="
+          cuponForm?.controls?.expiredDate?.errors?.required &&
+          cuponForm?.controls?.expiredDate?.touched
+          "
+        >
+          La fecha del vencimiento es obligatorio
+        </span>
+  
+        <!-- </div> -->
+      </fieldset>
+  
+      <fieldset>
+        <label for="name">Monto</label>
+        <input
+          type="text"
+          formControlName="quantity"
+          name="quantity"
+        />
+        <!-- <div class="text-red-400"> -->
+        <span
+          class="alert-error"
+          *ngIf="
+          cuponForm?.controls?.quantity?.errors?.required &&
+          cuponForm?.controls?.quantity?.touched
+          "
+        >
+          El monto es obligatorio
+        </span>
+  
+        <!-- </div> -->
+      </fieldset>
+  
+      <fieldset>
+        <label for="name">Condición
+        </label>
+        <select name="" id="">
+            <option value="1">Para todos los clientes</option>
+            <option value="1">Mayor 5 pedidos por mes</option>
+            <option value="2">Mayor 10 pedidos por mes</option>
+            <option value="3">Mayor 2 x 1</option>
+            <option value="4">Por invitar a un amigo</option>
+        </select>
+        <!-- <input
+          type="text"
+          formControlName="condition"
+          name="condition"
+        /> -->
+        <!-- <div class="text-red-400"> -->
+        <span
+          class="alert-error"
+          *ngIf="
+          cuponForm?.controls?.quantity?.errors?.required &&
+          cuponForm?.controls?.quantity?.touched
+          "
+        >
+          El monto es obligatorio
+        </span>
+  
+        <!-- </div> -->
+      </fieldset>
+
+      <!-- <span>Email incorrecto</span> -->
+      <fieldset>
+        <label for="description">Descripcion</label>
+        <textarea
+          formControlName="description"
+          placeholder="Ingrese una description"
+          name="description"
+          rows="5"
+          cols="30"
+        >
+        </textarea>
+      </fieldset>
+  
+      <div class="w-full flex justify-between my-2">
+        <button type="submit" class="btn text-lg uppercase self-start btn-d">
+          {{ btnOption ? "Actualizar" : "Crear" }}
+        </button>
+        <buttton
+          routerLink="/roles"
+          class="btn text-lg uppercase self-start btn-cancel"
+        >
+          Volver
+        </buttton>
+      </div>
+    </form>
+  </div>
+  
